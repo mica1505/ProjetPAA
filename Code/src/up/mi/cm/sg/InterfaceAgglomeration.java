@@ -1,31 +1,42 @@
 package up.mi.cm.sg;
 import java.util.Scanner;
 
+
 public class InterfaceAgglomeration {
 	public static void main(String [] args) {
-		Scanner inputNbCities = new Scanner(System.in);
-		System.out.println("Entrez le nombre de villes : ");
-		int nbCities = inputNbCities.nextInt();
+		Scanner sc = new Scanner(System.in);
+		System.out.print("\nEntrez le nombre de villes : ");
+		int nbCities = sc.nextInt();
+		
 		CA agg = new CA(nbCities);
 		
 		boolean quit = false;
-		Scanner inputChoice = new Scanner(System.in);
 		while(!quit) {
 			System.out.println("\n1) Ajouter une route.\n2) Fin.");
+			String choice  = sc.next();
 			
-			String choice = inputChoice.next();
 			switch(choice) {
 				case "1":
-					agg.initRoads();
+					agg.initRoads(sc);
 					break;
 				case "2":
-					quit = true;
-					
+					System.out.println("\n1) Ajouterune borne.\n2) Supprimer une borne.\n3) Fin.");
+					int choiceB = sc.nextInt();
+					if(choiceB == 1) {
+						agg.addZone(sc);
+					}
+					else if(choiceB == 2) {
+						agg.removeZone(sc);
+					}
+					else {
+						quit = true;
+					}
 					break;
 			}
 		}
-		inputNbCities.close();
-		inputChoice.close();
+		
+		
+		sc.close();
 		agg.printAgglomeration();
 	}
 }

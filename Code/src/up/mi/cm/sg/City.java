@@ -53,4 +53,14 @@ public class City{
 		}
 		return sbf.toString();
 	}
+	
+	public boolean hasNeighbourZone() {
+		boolean res = false;
+		for(int i=0;i<this.cities.size() && !res;i++) {
+			if(this.cities.get(i).getZone()) {
+				res = true;
+			}
+		}
+		return res;
+	}
 }
