@@ -8,7 +8,9 @@ import java.util.Scanner;
  */
 public class CA{
 /***
- * 
+ * Initialisation des attributs de la classe 
+ * @agglomeration : 
+ * @nbCities : 
  */
 	private ArrayList <City> agglomeration;
 	private int nbCities;
