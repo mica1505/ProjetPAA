@@ -1,8 +1,16 @@
 package up.mi.cm.sg;
 import java.util.Scanner;
 
-
+/***
+ * 
+ * @author 
+ *
+ */
 public class InterfaceAgglomeration {
+	/***
+	 * 
+	 * @param args
+	 */
 	public static void main(String [] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("\nEntrez le nombre de villes : ");
