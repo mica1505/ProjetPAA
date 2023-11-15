@@ -1,13 +1,15 @@
 package up.mi.cm.sg;
 import java.util.ArrayList;
 /***
- * 
+ * Represente une ville avec son nom, sa liste de villes voisines, sa zone de recharge
  * @author 
- *
+ * @version 1
  */
 public class City{
 	/***
-	 * 
+	 * @name
+	 * @cities
+	 * @containZone
 	 */
 	private String name;
 	private ArrayList<City> cities;
