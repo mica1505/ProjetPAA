@@ -7,21 +7,26 @@ import java.util.ArrayList;
  */
 public class City{
 	/***
-	 * @name
-	 * @cities
-	 * @containZone
+	 * @name nom de la ville
+	 * @cities liste des villes voisines
+	 * @containZone boolean mis a true si la ville contient une zone, faux sinon
 	 */
 	private String name;
 	private ArrayList<City> cities;
 	private boolean containZone;
-
+	/***
+	 * Constructeur : 
+	 * 		- Construit un Objet City et lui attribue un nom
+	 * @param name
+	 */
 	public City(String name) {
-		this.name = name;
+		this.name = name.toUpperCase();
 		cities = new ArrayList<>();
 		this.containZone = true;
 	}
 	/***
-	 * 
+	 * Constructeur : 
+	 * 		- Construit un Objet City et lui attribue un nom et une liste de villes voisines
 	 * @param name
 	 * @param cities
 	 */
@@ -31,35 +36,37 @@ public class City{
 		this.containZone = true;
 	}
 	/***
-	 * 
-	 * @return
+	 * Permet d'acceder a la liste des villes voisines 
+	 * @return ArrayList<City> : liste des villes voisines
 	 */
 	public ArrayList<City> getCities(){
 		return this.cities;
 	}
 	/***
-	 * 
-	 * @return
+	 * Fonction qui permet de savoir si une ville contient une zone ou pas
+	 * @retur boolean : True si la ville contient une zone,False sinon
 	 */
 	public boolean getZone() {
 		return this.containZone;
 	}
 	/***
-	 * 
-	 * @return
+	 * Permet d'acceder au nom de la ville
+	 * @return String : le nom de la ville 
 	 */
 	public String getName() {
 		return this.name;
 	}
 	/***
-	 * 
-	 * @param b
+	 * Permet de modifier l'attribut containZone
+	 * @param b : boolean 
 	 */
 	public void setZone(boolean b) {
 		this.containZone = b;
 	}
 	/***
-	 * 
+	 * Fonction qui Ajoute une ville voisine à la ville actuelle. 
+	 * Si la ville spécifiée n'est pas déjà une voisine,
+	 * elle est ajoutée à la liste des villes voisines tant pour la ville actuelle que pour la ville spécifiée
 	 * @param newCity
 	 */
 	public void addNeighbour(City newCity) {
@@ -71,7 +78,8 @@ public class City{
 		}
 	}
 	/***
-	 * 
+	 * Renvoie une représentation textuelle de l'objet Ville 
+	 * @return un String contenant le nom de la ville actuelle, indique la presence station de recharge et ses villes voisines
 	 */
 	public String toString() {
 		StringBuffer sbf = new StringBuffer("\nNom de la ville: " + this.name + "\nA une station de recharge : "+(this.getZone()?"Oui\n":"Non\n")+"Les villes voisines : ");
@@ -83,8 +91,8 @@ public class City{
 		return sbf.toString();
 	}
 	/***
-	 * 
-	 * @return
+	 * Verifie si la ville actuelle est reliee directement a une une ville qui contient une zone de recharge
+	 * @return boolean : true si la ville est reliee directement a une ville qui contient une zone de recharge, faux sinon
 	 */
 	public boolean hasNeighbourZone() {
 		boolean res = false;
@@ -96,29 +104,30 @@ public class City{
 		return res;
 	}
 	/***
-	 * 
+	 * Verifie si une ville voisine est reliee directement a une une ville qui contient une zone de recharge hormis la ville actuelle
 	 * @param c
-	 * @return
+	 * @return boolean : true si la ville est reliee directement a une ville qui contient une zone de recharge, faux sinon
 	 */
 	public boolean hasNeighbourZone(City c) {
 		boolean res = false;
 		for(int i=0;i<this.cities.size() && !res;i++) {
 			//si un de ses voisins a une zone et que ce voisin n'est pas C
-			if( (this.cities.get(i)).getZone() && !((this.cities.get(i)).getName().equals(c.getName()))) {
+			if((this.cities.get(i)).getZone() && !((this.cities.get(i)).getName().equals(c.getName()))) {
 				res = true;
 			}
 		}
 		return res;
 	}
 	/***
-	 * 
+	 * Verifie si tous les voisins de la ville actuelle sont relies a une autre ville contenant une zone de recharge ou non
 	 * @param c
-	 * @return
+	 * @return boolean : true si un des voisins n'est pas relie a une zone
 	 */
 	public boolean notLinkedToZone(City c) {
 		boolean res=false;
+		//pour chaque voisin de la ville actuelle on verifie si il a une zone ou si il est relie directement a une ville qui en contient
 		for(int i=0;i<this.cities.size() && !res;i++) {
-			if(!(this.cities.get(i)).hasNeighbourZone(c)) {
+			if((!(this.cities.get(i)).hasNeighbourZone(c)) && !this.cities.get(i).getZone()) {
 				res = true;
 			}
 		}

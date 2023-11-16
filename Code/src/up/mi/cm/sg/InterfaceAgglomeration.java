@@ -2,13 +2,14 @@ package up.mi.cm.sg;
 import java.util.Scanner;
 
 /***
- * 
+ * Represente le menu de demarrage et initialisation de l'agglomeration
  * @author 
+ * @version 1
  *
  */
 public class InterfaceAgglomeration {
 	/***
-	 * 
+	 * Fonction pour Creation de l'agglomeration
 	 * @param args
 	 */
 	public static void main(String [] args) {

@@ -15,7 +15,7 @@ public class CA{
 	private ArrayList <City> agglomeration;
 	private int nbCities;
 /***
- * Represente une agglomeration avec : 
+ * Construit une agglomeration avec : 
  * 		- Une ArrayList de type City qui contient le nom des villes
  * 		- Nombre de villes a nbCities
  * 
@@ -58,7 +58,7 @@ public class CA{
 /***
  * Permet d'acceder a une ville de l'agglomeration en partant de son nom 
  * @param name : nom de la ville
- * @return la ville recherchee
+ * @return City : la ville recherchee
  */
 	public City getCity(String name){
 		City res = null;
@@ -83,8 +83,8 @@ public class CA{
 		System.out.print("\nEntrez le nom de la seconde ville : ");
 		cr2 = sc.next();
 		
-		c1 = getCity(cr1);
-		c2 =  getCity(cr2);
+		c1 = getCity(cr1.toUpperCase());
+		c2 =  getCity(cr2.toUpperCase());
 		
 		c1.addNeighbour(c2);
 		
@@ -101,7 +101,7 @@ public class CA{
 		System.out.print("\nEntrez le nom de la ville : ");
 		cName = sc.next();
 		
-		c = getCity(cName);
+		c = getCity(cName.toUpperCase());
 		if(c.getZone()) {
 			System.out.print("\nLa ville est deja en possession d'une zone de recharge\n");
 		}else {
@@ -125,7 +125,7 @@ public class CA{
 		System.out.print("\nEntrez le nom de la ville : ");
 		cName = sc.next();
 		
-		c = getCity(cName);
+		c = getCity(cName.toUpperCase());
 		if(!c.getZone()) {
 			System.out.print("\nLa ville ne possede pas de zone de recharge.\n");
 		}else {
