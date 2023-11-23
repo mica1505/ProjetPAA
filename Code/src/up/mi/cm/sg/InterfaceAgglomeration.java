@@ -30,7 +30,15 @@ public class InterfaceAgglomeration {
 	public static void initAgglomeration() {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("\nEntrez le nombre de villes : ");
-		int nbCities = sc.nextInt();
+		boolean right = true;
+		do {
+			try {
+				int nbCities = sc.nextInt();
+				
+			}catch(InputMismatchException | NoSuchElementException | IllegalStateException e){
+				right = false;
+			}
+		}while(!right);
 		
 		CA agg = new CA(nbCities);
 		
