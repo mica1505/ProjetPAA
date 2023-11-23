@@ -1,0 +1,5 @@
+ville(A)
+ville(B)
+ville(C)
+route(A,B)
+route(B,C)

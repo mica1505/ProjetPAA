@@ -1,5 +1,6 @@
 package up.mi.cm.sg;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 /***
  * Represente une agglomeration avec sa liste de villes et le nombre de villes qu'elle contient
@@ -12,7 +13,7 @@ public class CA{
  * @agglomeration : liste des villes qui constituent l'agglomeration
  * @nbCities : nombre de villes dans l'agglomeration
  */
-	private ArrayList <City> agglomeration;
+	private List<City> agglomeration;
 	private int nbCities;
 /***
  * Construit une agglomeration avec : 
@@ -25,6 +26,9 @@ public class CA{
 		this.agglomeration = new ArrayList<City>();
 		setNbCities(nbCities);
 		initCity(nbCities);
+	}
+	public CA() {
+		this.agglomeration = new ArrayList<City>();
 	}
 /***
  * Initialise le nom des villes de l'agglomeration :
@@ -68,6 +72,9 @@ public class CA{
 			}
 		}
 		return res;
+	}
+	public void addCity(City newCity) {
+		agglomeration.add(newCity);
 	}
 /***
  * Fonction pour initialiser une route entre 2 villes saisies au clavier
