@@ -25,7 +25,7 @@ public class CA{
 	public CA(int nbCities) {
 		this.agglomeration = new ArrayList<City>();
 		setNbCities(nbCities);
-		initCity(nbCities);
+		initCity();
 	}
 	public CA() {
 		this.agglomeration = new ArrayList<City>();
@@ -37,7 +37,7 @@ public class CA{
  * 
  * @param nbCities : le nombre de villes de l'agglomeration
  */
-	private void initCity(int nbCities) {
+	private void initCity() {
 		int letter = 65;
 		for(int i= 0; i<this.nbCities ; i++) {
 			if(nbCities<=26) {
@@ -84,12 +84,12 @@ public class CA{
 		City c1,c2;
 		String cr1,cr2;
 		
-		System.out.print("\nEntrez le nom de la premiere ville : ");
-		cr1 = sc.next();
-		
-		System.out.print("\nEntrez le nom de la seconde ville : ");
-		cr2 = sc.next();
-		
+		do {
+		cr1 = IO.SaisieString(sc, "\nEntrez le nom de la premiere ville : ");
+		}while(nbCities <= 26 && (cr1.charAt(0)<'A'||cr1.charAt(0)>='A'+nbCities)|| nbCities > 26 && (Integer.parseInt(cr1)<0 || Integer.parseInt(cr1)>nbCities));
+		do {
+		cr2 = IO.SaisieString(sc, "\nEntrez le nom de la seconde ville : ");
+		}while(nbCities <= 26 && (cr2.charAt(0)<'A'|| cr2.charAt(0)>='A'+nbCities)|| nbCities > 26 && (Integer.parseInt(cr2)<0 || Integer.parseInt(cr2)>nbCities)||cr1.equals(cr2));
 		c1 = getCity(cr1.toUpperCase());
 		c2 =  getCity(cr2.toUpperCase());
 		

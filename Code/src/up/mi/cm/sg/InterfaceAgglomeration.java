@@ -29,16 +29,7 @@ public class InterfaceAgglomeration {
 	 */
 	public static void initAgglomeration() {
 		Scanner sc = new Scanner(System.in);
-		System.out.print("\nEntrez le nombre de villes : ");
-		boolean right = true;
-		do {
-			try {
-				int nbCities = sc.nextInt();
-				
-			}catch(InputMismatchException | NoSuchElementException | IllegalStateException e){
-				right = false;
-			}
-		}while(!right);
+		int nbCities = IO.SaisieInt(sc,"\nEntrez le nombre de villes : ");
 		
 		CA agg = new CA(nbCities);
 		
@@ -57,8 +48,7 @@ public class InterfaceAgglomeration {
 		boolean quit = false;
 	
 		while(!quit) {
-			System.out.println("\n1) Ajouter une route.\n2) Fin.");
-			String choice  = sc.next();
+			String choice  = IO.SaisieString(sc, "\n1) Ajouter une route.\n2) Fin.");
 			
 			switch(choice) {
 				case "1":
@@ -78,8 +68,7 @@ public class InterfaceAgglomeration {
 	public static void menu2(Scanner sc, CA agg) {
 		boolean quit = false;
 		while(!quit) {
-			System.out.println("\n1) Ajouter une borne.\n2) Supprimer une borne.\n3) Fin.");
-			int choiceB = sc.nextInt();
+			int choiceB = IO.SaisieInt(sc, "\n1) Ajouter une borne.\n2) Supprimer une borne.\n3) Fin.");
 			if(choiceB == 1) {
 				agg.addZone(sc);
 			}
