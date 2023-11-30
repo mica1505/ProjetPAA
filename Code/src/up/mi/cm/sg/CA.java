@@ -2,6 +2,7 @@ package up.mi.cm.sg;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Random;
 /***
  * Represente une agglomeration avec sa liste de villes et le nombre de villes qu'elle contient
  * @author 
@@ -62,7 +63,7 @@ public class CA{
 /***
  * Permet d'acceder a une ville de l'agglomeration en partant de son nom 
  * @param name : nom de la ville
- * @return City : la ville recherchee
+ * @return name : la ville recherchee
  */
 	public City getCity(String name){
 		City res = null;
@@ -98,10 +99,9 @@ public class CA{
 	}
 /***
  * Fonction qui demande a l'utilisateur de saisir une ville dans laquelle il veut ajouter une borne de recharge :
- * 		- Si la ville ne possede pas de zone de recharge, on en rajoute une. Sinon on ne fait rien
  * @param sc : Scanner pour effectuer une lecture clavier
  */
-	public void addZone(Scanner sc) {
+	public void addZoneUser(Scanner sc) {
 		City c;
 		String cName;
 		
@@ -109,8 +109,21 @@ public class CA{
 		cName = sc.next();
 		
 		c = getCity(cName.toUpperCase());
+		
+		try {
+			addZone(c);
+		} catch (ExeptionChangesArea e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+/***
+ * Si la ville ne possede pas de zone de recharge, on en rajoute une. Sinon on ne fait rien
+ * @param c : prend la vile a modifier
+ */
+	public void addZone(City c) throws ExeptionChangesArea{
 		if(c.getZone()) {
-			System.out.print("\nLa ville est deja en possession d'une zone de recharge\n");
+			throw new ExeptionChangesArea("\nLa ville est deja en possession d'une zone de recharge\n");
 		}else {
 			c.setZone(true);
 		}
@@ -119,28 +132,39 @@ public class CA{
 	}
 /***
  * Fonction qui demande a l'utilisateur de saisir le nom de la ville d'ou il veut supprimer une zone de recharge.
- * La zone est supprimee si et seulement si : 
- * 		- Les villes qui sont reliees a cette ville sont en relation direct avec une autre ville possedant une zone de recharge
- * 		- La ville en question est en relation direct avec une autre ville qui possede une zone de recharge
- * 		- Si la ville possede une zone de recharge
- * @param sc : Scanner pour effectuer une lecture clavier
+ * @param sc : Scanner pour effectuer une lecture clavier 
  */
-	public void removeZone(Scanner sc) {
-		City c;
+ 	public void removeZoneUser(Scanner sc) {
+ 		City c;
 		String cName;
 		
 		System.out.print("\nEntrez le nom de la ville : ");
 		cName = sc.next();
 		
 		c = getCity(cName.toUpperCase());
+		
+		try {
+			removeZone(c);
+		} catch (ExeptionChangesArea e) {
+			System.out.println(e.getMessage());
+		}
+ 	}
+/***
+ * La zone est supprimee si et seulement si : 
+ * 		- Les villes qui sont reliees a cette ville sont en relation direct avec une autre ville possedant une zone de recharge
+ * 		- La ville en question est en relation direct avec une autre ville qui possede une zone de recharge
+ * 		- Si la ville possede une zone de recharge
+ * @param c : prent la ville a modifier
+ */
+	public void removeZone(City c) throws ExeptionChangesArea{
 		if(!c.getZone()) {
-			System.out.print("\nLa ville ne possede pas de zone de recharge.\n");
+			throw new ExeptionChangesArea("\nLa ville ne possede pas de zone de recharge.\n");
 		}else {
 			if(c.notLinkedToZone(c)) {
-				System.out.println("On ne peut pas supprimer la zone, car une des villes frontalieres ne sera pas desservie.");
+				throw new ExeptionChangesArea("On ne peut pas supprimer la zone, car une des villes frontalieres ne sera pas desservie.");
 			}
 			else if(!c.hasNeighbourZone()) {
-				System.out.println("On ne peut pas supprimer la zone de recharge, car la ville n'est pas reliee directement a une ville qui en possede une.");
+				throw new ExeptionChangesArea("On ne peut pas supprimer la zone de recharge, car la ville n'est pas reliee directement a une ville qui en possede une.");
 			}
 			else if(c.hasNeighbourZone()) {
 				c.setZone(false);
@@ -169,4 +193,63 @@ public class CA{
 			System.out.println(agglomeration.get(i));
 		}
 	}
+/***
+ * Fonction qui renvois une ville choisie aleatoirement
+ * @return City : une ville de l'agglomeration
+ */
+	public City choise() {
+		Random random = new Random();
+		int i = random.nextInt(agglomeration.size());
+		return agglomeration.get(i);
+	}
+	/***
+	 * Fonctions naif qui permet de diminuer le nombre de borne dans une CA
+	 * @param int : nombre d'iterations que vas fair le programe avens de sareter 
+	 */
+	public void naiveSolutions(int iterations) {
+		int i = 0;
+		while(i < iterations) {
+			City c = choise();
+			try {
+				if(c.getZone()) {
+					removeZone(c);
+					i++;
+				}else {
+					addZone(c);
+					i++;
+				}
+			}catch(ExeptionChangesArea e){}
+		}
+	}
+	public int score() {
+		int nbBorne = 0;
+		for(City c : agglomeration) {
+			if(c.getZone()) {
+				nbBorne++;
+			}
+		}
+		return nbBorne;
+	}
+	public void naiveSolutions2(int iterations) {
+		int i = 0; 
+		int scoreCourant = score();
+		while(i < iterations) {
+			City c = choise();
+			try {
+				if(c.getZone()) {
+					removeZone(c);
+					i++;
+				}else {
+					addZone(c);
+					i++;
+				}
+			}catch(ExeptionChangesArea e){}
+			if(score() < scoreCourant) {
+				scoreCourant = score();
+				i = 0;
+			}
+		}
+	}
 }
+
+

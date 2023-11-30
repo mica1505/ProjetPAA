@@ -70,10 +70,10 @@ public class InterfaceAgglomeration {
 		while(!quit) {
 			int choiceB = IO.SaisieInt(sc, "\n1) Ajouter une borne.\n2) Supprimer une borne.\n3) Fin.");
 			if(choiceB == 1) {
-				agg.addZone(sc);
+				agg.addZoneUser(sc);
 			}
 			else if(choiceB == 2) {
-				agg.removeZone(sc);
+				agg.removeZoneUser(sc);
 			}
 			else {
 				quit = true;
