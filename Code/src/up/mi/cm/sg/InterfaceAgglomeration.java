@@ -34,7 +34,7 @@ public class InterfaceAgglomeration {
 		CA agg = new CA(nbCities);
 		
 		menu1(sc,agg);
-		menu2(sc,agg);
+		menuHumanOrComputer(sc,agg);
 		
 		sc.close();
 		agg.printAgglomeration();
@@ -65,17 +65,49 @@ public class InterfaceAgglomeration {
 	 * @param sc
 	 * @param agg
 	 */
-	public static void menu2(Scanner sc, CA agg) {
+	public static void menuHumanOrComputer(Scanner sc, CA agg) {
 		boolean quit = false;
 		while(!quit) {
-			int choiceB = IO.SaisieInt(sc, "\n1) Ajouter une borne.\n2) Supprimer une borne.\n3) Fin.");
-			if(choiceB == 1) {
+			String choiceB = IO.SaisieString(sc, "\nComment veut tu resoudre se le probleme en tans que hummain (H) ou ordinateur (O) : ");
+			if(choiceB.equals("H") || choiceB.equals("h")) {
+				menuHuman(sc, agg);
+				quit = true;
+			}
+			else if(choiceB.equals("O") || choiceB.equals("o")) {
+				menuComputer(sc, agg);
+				quit = true;
+			}
+		}
+	}
+	
+	public static void menuHuman(Scanner sc, CA agg) {
+		boolean quit = false;
+		while(!quit) {
+			int choice = IO.SaisieInt(sc, "\n1) Ajouter une borne.\n2) Supprimer une borne.\n3) Fin.");
+			if(choice == 1) {
 				agg.addZoneUser(sc);
 			}
-			else if(choiceB == 2) {
+			else if(choice == 2) {
 				agg.removeZoneUser(sc);
 			}
-			else {
+			else if(choice == 3){
+				quit = true;
+			}
+		}
+	}
+	public static void menuComputer(Scanner sc, CA agg) {
+		boolean quit = false;
+		int k;
+		while(!quit) {
+			int choice = IO.SaisieInt(sc, "\n1) Premier algorithme naïf.\n2) Second une borne.");
+			if(choice == 1) {
+				k = IO.SaisieInt(sc, "\nLe nombre de itetrations de la simulations.");
+				agg.naiveSolutions(k);
+				quit = true;
+			}
+			else if(choice == 2) {
+				k = IO.SaisieInt(sc, "\nLe nombre de itetrations de la simulations.");
+				agg.naiveSolutions2(k);
 				quit = true;
 			}
 		}
