@@ -85,7 +85,7 @@ public class City{
 		StringBuffer sbf = new StringBuffer("\nNom de la ville: " + this.name + "\nA une station de recharge : "+(this.getZone()?"Oui\n":"Non\n")+"Les villes voisines : ");
 		for(int i=0;i<this.cities.size();i++) {
 			if(this.cities.size()>0) {
-				sbf.append(this.cities.get(i).getName() + " + ");
+				sbf.append(this.cities.get(i).getName() + "  ");
 			}
 		}
 		return sbf.toString();

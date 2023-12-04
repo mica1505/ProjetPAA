@@ -13,8 +13,6 @@ public class InterfaceAgglomeration {
 	 * @param args
 	 */
 	public static void main(String [] args) {
-		//CA agg = readAgglomeration();
-		//agg.printAgglomeration();
 		initAgglomeration();
 	}
 	/***
@@ -37,7 +35,7 @@ public class InterfaceAgglomeration {
 		menuHumanOrComputer(sc,agg);
 		
 		sc.close();
-		agg.printAgglomeration();
+		System.out.print(agg);
 	}
 	/***
 	 * 

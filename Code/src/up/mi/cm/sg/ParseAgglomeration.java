@@ -23,6 +23,7 @@ public class ParseAgglomeration {
 			//System.out.println(nbCities);
 			CA agg = readCities(data,nbCities);
 			readNeighbours(data,nbCities,agg);
+			readZones(data,nbCities,agg);
 			br.close();
 			return agg;
 		}
@@ -38,10 +39,11 @@ public class ParseAgglomeration {
 	public static CA readCities(ArrayList<String> data,int nbCities){
 		String line=null;
 		CA agg = new CA();
-		//agg = new CA(nbCities)
 		for(int i=0;i<nbCities;i++) {
 			line = data.get(i);
-			agg.addCity(new City(line.substring(6,7)));
+			City nCity = new City(line.substring(6,7));
+			nCity.setZone(false);
+			agg.addCity(nCity);
 		}
 		agg.setNbCities(nbCities);
 		return agg;
@@ -63,5 +65,17 @@ public class ParseAgglomeration {
 		}
 		//community.printAgglomeration();
 		return community;
+	}
+	
+	public static void readZones(ArrayList<String> data,int nbCities,CA community) {
+		String line = null;
+		City a,b;
+		for(int i=nbCities;i<data.size();i++) {
+			line=data.get(i); 
+			if(line.startsWith("recharge")) {
+				a = community.getCity(line.split("\\(")[1].split("\\)")[0]);
+				a.setZone(true);
+			}
+		}
 	}
 }

@@ -115,7 +115,7 @@ public class CA{
 		} catch (ExeptionChangesArea e) {
 			System.out.println(e.getMessage());
 		}
-		allZones();
+		System.out.println(allZones());
 	}
 	
 /***
@@ -147,7 +147,7 @@ public class CA{
 		} catch (ExeptionChangesArea e) {
 			System.out.println(e.getMessage());
 		}
-		allZones();
+		System.out.println(allZones());
  	}
 /***
  * La zone est supprimee si et seulement si : 
@@ -174,21 +174,24 @@ public class CA{
 /***
  * Fonction qui affiche les villes qui possedent une zone de recharge
  */
-	public void allZones() {
-		System.out.print("\nLes villes qui possedent des zones de recharge sont : ");
+	public String allZones() {
+		StringBuilder sb = new StringBuilder("\nLes villes qui possedent des zones de recharge sont : ");
 		for(int i=0;i<nbCities;i++) {
 			if(agglomeration.get(i).getZone()) {
-				System.out.print(agglomeration.get(i).getName()+"  ");
+				sb.append(agglomeration.get(i).getName()+"  ");
 			}
 		}
+		return sb.toString();
 	}
 /***
 * 	Fonction qui affiche les villes de l'agglomeration
 */
-	public void printAgglomeration() {
+	public String toString() {
+		StringBuilder sb = new StringBuilder("");
 		for(int i=0;i<nbCities;i++) {
-			System.out.println(agglomeration.get(i));
+			sb.append(agglomeration.get(i)+"\n");
 		}
+		return sb.toString();
 	}
 /***
  * Fonction qui renvois une ville choisie aleatoirement
