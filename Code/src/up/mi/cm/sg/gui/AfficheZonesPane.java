@@ -15,6 +15,7 @@ public class AfficheZonesPane extends FlowPane{
 		
 		b.setOnAction(event->{
 			s.setScene(AgglomerationGUI.menu2);
+			
 		});
 		this.getChildren().addAll(ta,b);
 	}

@@ -97,16 +97,22 @@ public class InterfaceAgglomeration {
 		boolean quit = false;
 		int k;
 		while(!quit) {
-			int choice = IO.SaisieInt(sc, "\n1) Premier algorithme naïf.\n2) Second une borne.");
-			if(choice == 1) {
-				k = IO.SaisieInt(sc, "\nLe nombre de itetrations de la simulations.");
-				agg.naiveSolutions(k);
-				quit = true;
-			}
-			else if(choice == 2) {
-				k = IO.SaisieInt(sc, "\nLe nombre de itetrations de la simulations.");
-				agg.naiveSolutions2(k);
-				quit = true;
+			int choice = IO.SaisieInt(sc, "\n1) Premier algorithme naïf.\n2) Second une borne\n3) Algorithme glouton.");
+			switch(choice){
+				case 1:
+					k = IO.SaisieInt(sc, "\nLe nombre de itetrations de la simulations.");
+					agg.naiveSolutions(k);
+					quit = true;
+					break;
+				case 2:
+					k = IO.SaisieInt(sc, "\nLe nombre de itetrations de la simulations.");
+					agg.naiveSolutions2(k);
+					quit = true;
+					break;
+				case 3:
+					agg.algorithmeGlouton();
+					quit = true;
+					break;
 			}
 		}
 	}
