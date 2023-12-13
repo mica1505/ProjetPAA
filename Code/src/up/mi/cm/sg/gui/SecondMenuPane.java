@@ -16,7 +16,7 @@ public class SecondMenuPane extends FlowPane{
 		Button remove = new Button("Supprimer une zone");
 		Button print = new Button("Afficher");
 		Button end = new Button("Fin");
-		
+		AfficherGraphStream a  = new AfficherGraphStream();
 		
 		add.setOnAction(event->{
 			stage.setScene(new Scene(new AddZone(stage),300,300));
@@ -27,7 +27,14 @@ public class SecondMenuPane extends FlowPane{
 		});
 		
 		end.setOnAction(event->{
-			System.exit(1);
+			try {
+				a.start(stage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("je vais menerver");
+				e.printStackTrace();
+			}
+			//System.exit(1);
 		});
 		
 		print.setOnAction(event->{

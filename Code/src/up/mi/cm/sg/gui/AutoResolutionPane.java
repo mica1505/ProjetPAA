@@ -22,7 +22,7 @@ public class AutoResolutionPane extends FlowPane{
 		Button upgrade = new Button("Resolution optimisee");
 		Button print = new Button("Afficher");
 		Button quit = new Button("Fin");
-		
+
 		naive.setOnAction(event->{
 			AgglomerationGUI.agg = ParseAgglomeration.parseAgg(path.getText());
 			AgglomerationGUI.agg.naiveSolutions(0);
@@ -37,6 +37,7 @@ public class AutoResolutionPane extends FlowPane{
 		
 		upgrade.setOnAction(event->{
 			AgglomerationGUI.agg = ParseAgglomeration.parseAgg(path.getText());
+			AgglomerationGUI.agg.algorithmeGlouton();
 			stage.setScene(new Scene(new AfficherPane(stage,0)));
 			
 		});

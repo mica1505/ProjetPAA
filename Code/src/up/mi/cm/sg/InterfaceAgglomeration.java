@@ -33,7 +33,6 @@ public class InterfaceAgglomeration {
 		
 		menu1(sc,agg);
 		menuHumanOrComputer(sc,agg);
-		
 		sc.close();
 		System.out.print(agg);
 	}

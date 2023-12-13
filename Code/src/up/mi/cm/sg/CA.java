@@ -1,5 +1,6 @@
 package up.mi.cm.sg;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
@@ -76,6 +77,9 @@ public class CA{
 	}
 	public void addCity(City newCity) {
 		agglomeration.add(newCity);
+	}
+	public List<City> getCA(){
+		return agglomeration;
 	}
 /***
  * Fonction pour initialiser une route entre 2 villes saisies au clavier
@@ -251,9 +255,11 @@ public class CA{
 		}
 	}
 	public void algorithmeGlouton() {
+		Collections.sort(agglomeration);
 		for(City c : agglomeration) {
 			c.setZone(false);
 		}
+		
 		for(City c : agglomeration) {
 			if(!c.hasNeighbourZone()) {
 				c.setZone(true);
