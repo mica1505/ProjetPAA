@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * @author 
  * @version 1
  */
-public class City{
+public class City implements Comparable<City>{
 	/***
 	 * @name nom de la ville
 	 * @cities liste des villes voisines
@@ -132,5 +132,15 @@ public class City{
 			}
 		}
 		return res;
+	}
+	@Override
+	public int compareTo(City c) {
+		if (cities.size() < c.cities.size()){
+			return 1;
+		}else if (cities.size() > c.cities.size()) {
+			return -1;
+		}else {
+			return 0;
+		}
 	}
 }
