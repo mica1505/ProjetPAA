@@ -20,7 +20,9 @@ public class RemoveZone extends FlowPane{
 		
 		add.setOnAction(event->{
 			try {
-				AgglomerationGUI.agg.removeZone(AgglomerationGUI.agg.getCity(city1.getText().toUpperCase()));
+				if(AgglomerationGUI.agg.getCity(city1.getText().toUpperCase())!=null) {
+					AgglomerationGUI.agg.removeZone(AgglomerationGUI.agg.getCity(city1.getText().toUpperCase()));
+				}
 			}
 			catch(Exception e) {
 				System.out.println(e.getMessage());

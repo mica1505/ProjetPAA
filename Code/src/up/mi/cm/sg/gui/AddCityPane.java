@@ -25,7 +25,9 @@ public class AddCityPane extends FlowPane{
 		fCity2.getChildren().addAll(new Label("Nom de la seconde ville "),city2);
 		
 		add.setOnAction(event->{
-			AgglomerationGUI.agg.getCity(city1.getText().toUpperCase()).addNeighbour(AgglomerationGUI.agg.getCity(city2.getText().toUpperCase()));
+			if(AgglomerationGUI.agg.getCity(city1.getText().toUpperCase())!= null && AgglomerationGUI.agg.getCity(city2.getText().toUpperCase())!=null){
+				AgglomerationGUI.agg.getCity(city1.getText().toUpperCase()).addNeighbour(AgglomerationGUI.agg.getCity(city2.getText().toUpperCase()));
+			}
 			//on revient sur le menu de depart
 			stage.setScene(AgglomerationGUI.menu1);
 		});

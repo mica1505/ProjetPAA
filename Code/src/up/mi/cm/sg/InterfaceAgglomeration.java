@@ -77,7 +77,11 @@ public class InterfaceAgglomeration {
 			}
 		}
 	}
-	
+	/**
+	 * 
+	 * @param sc
+	 * @param agg
+	 */
 	public static void menuHuman(Scanner sc, CA agg) {
 		boolean quit = false;
 		while(!quit) {
@@ -93,6 +97,11 @@ public class InterfaceAgglomeration {
 			}
 		}
 	}
+	/**
+	 * 
+	 * @param sc
+	 * @param agg
+	 */
 	public static void menuComputer(Scanner sc, CA agg) {
 		boolean quit = false;
 		int k;

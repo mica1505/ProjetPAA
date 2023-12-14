@@ -6,7 +6,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 
 public class ParseAgglomeration {
-	
+	/**
+	 * 
+	 * @param file
+	 * @return
+	 */
 	public static CA parseAgg(String file) {
 		
 		try{
@@ -35,7 +39,12 @@ public class ParseAgglomeration {
 		}
 		return null;
 	}
-	
+	/**
+	 * 
+	 * @param data
+	 * @param nbCities
+	 * @return
+	 */
 	public static CA readCities(ArrayList<String> data,int nbCities){
 		String line=null;
 		CA agg = new CA();
@@ -48,7 +57,13 @@ public class ParseAgglomeration {
 		agg.setNbCities(nbCities);
 		return agg;
 	}
-	
+	/**
+	 * 
+	 * @param data
+	 * @param nbCities
+	 * @param community
+	 * @return
+	 */
 	public static CA readNeighbours(ArrayList<String> data,int nbCities,CA community){
 		String line = null;
 		City a,b;
@@ -66,7 +81,12 @@ public class ParseAgglomeration {
 		//community.printAgglomeration();
 		return community;
 	}
-	
+	/**
+	 * 
+	 * @param data
+	 * @param nbCities
+	 * @param community
+	 */
 	public static void readZones(ArrayList<String> data,int nbCities,CA community) {
 		String line = null;
 		City a,b;

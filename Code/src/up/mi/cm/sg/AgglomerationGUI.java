@@ -13,6 +13,7 @@ public class AgglomerationGUI extends Application{
 	public static Scene menu1 = null;
 	public static Scene menu2 = null;
 	public static Scene menuAuto = null;
+	public static String aggPath = null;
 	public void start(Stage stage) {
 		menuStart = new Scene(new MainPane(stage),300,300);
 		menu1 = new Scene(new FirstMenuPane(stage),300,300);

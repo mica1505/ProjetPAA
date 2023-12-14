@@ -203,7 +203,7 @@ public class CA{
 		return agglomeration.get(i);
 	}
 	/***
-	 * Fonctions naif qui permet de diminuer le nombre de borne dans une CA
+	 * Fonction naive qui permet de diminuer le nombre de borne dans une CA
 	 * @param int : nombre d'iterations que vas fair le programe avens de sareter 
 	 */
 	public void naiveSolutions(int iterations) {
@@ -221,6 +221,10 @@ public class CA{
 			}catch(ExeptionChangesArea e){}
 		}
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public int score() {
 		int nbBorne = 0;
 		for(City c : agglomeration) {
@@ -230,6 +234,10 @@ public class CA{
 		}
 		return nbBorne;
 	}
+	/**
+	 * 
+	 * @param iterations
+	 */
 	public void naiveSolutions2(int iterations) {
 		int i = 0; 
 		int scoreCourant = score();

@@ -1,6 +1,13 @@
 package up.mi.cm.sg;
 import java.util.Scanner;
+
 public class IO {
+	/**
+	 * 
+	 * @param sc
+	 * @param message
+	 * @return
+	 */
 	public static int SaisieInt(Scanner sc, String message) {
 		int tmp = 0;
 		boolean mauvaiseSaisie = false;
@@ -16,6 +23,12 @@ public class IO {
 		}while(mauvaiseSaisie);
 		return tmp;
 	}
+	/**
+	 * 
+	 * @param sc
+	 * @param message
+	 * @return
+	 */
 	public static String SaisieString(Scanner sc, String message) {
 		String s = "";
 		boolean mauvaiseSaisie = false;
