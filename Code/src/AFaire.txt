@@ -1,0 +1,5 @@
+gestion des erreurs premiere phase (3 villes)
+affichage des messages d'erreurs dans la console
+ajout de fichier via le args pour la lecture de la phase 2
+sauvegarde de la solution dans un fichier
+revoir les exceptions et les if de saisie dans l'interface graphique
