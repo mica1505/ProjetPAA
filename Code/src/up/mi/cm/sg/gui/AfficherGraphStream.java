@@ -2,6 +2,7 @@ package up.mi.cm.sg.gui;
 
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.awt.event.WindowEvent;
 
@@ -18,7 +19,6 @@ import up.mi.cm.sg.AgglomerationGUI;
 import up.mi.cm.sg.City;
 
 public class AfficherGraphStream extends Application {
-	private Viewer fxViewer;
 	public List<City> CA;
 
 	@Override
@@ -55,14 +55,4 @@ public class AfficherGraphStream extends Application {
 
         
     }
-
-    private void handleClose() {
-    	System.out.println("la fermeture");
-        if (fxViewer != null) {
-            fxViewer.close(); // Fermer le FxViewer (la fenêtre GraphStream)
-            fxViewer = null; // Réinitialiser la référence
-        }
-
-	}
-
 }

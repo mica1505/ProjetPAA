@@ -31,7 +31,7 @@ public class SecondMenuPane extends FlowPane{
 				a.start(stage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				System.out.println("je vais menerver");
+				System.out.println("je vais m'enerver");
 				e.printStackTrace();
 			}
 			//System.exit(1);

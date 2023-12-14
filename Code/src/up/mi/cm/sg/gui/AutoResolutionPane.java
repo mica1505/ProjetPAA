@@ -29,6 +29,8 @@ public class AutoResolutionPane extends FlowPane{
 		Button print = new Button("Afficher");
 		Button quit = new Button("Fin");
 		
+		AfficherGraphStream a  = new AfficherGraphStream();
+		
 		selectFile.setOnAction(event->{
 			File aggFile = explore.showOpenDialog(stage);
 			if(aggFile!=null) {
@@ -45,13 +47,14 @@ public class AutoResolutionPane extends FlowPane{
 		
 		naiveUpgraded.setOnAction(event->{
 			if(AgglomerationGUI.agg!=null)
-				stage.setScene(new Scene(new InputResNaivePane(stage),300,300));
+				stage.setScene(new Scene(new InputResNaiveOptiPane(stage),300,300));
 		});
 		
 		upgrade.setOnAction(event->{
 			if(AgglomerationGUI.agg!=null) {
 				System.out.println("resolution gloutonne");
 				//AgglomerationGUI.agg = ParseAgglomeration.parseAgg(AgglomerationGUI.aggPath);
+				AgglomerationGUI.agg.algorithmeGlouton();
 				stage.setScene(new Scene(new AfficherPane(stage,0)));
 			}
 			
@@ -65,7 +68,14 @@ public class AutoResolutionPane extends FlowPane{
 		});
 		
 		quit.setOnAction(event->{
-			System.exit(1);
+			try {
+				a.start(stage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("je vais m'enerver");
+				e.printStackTrace();
+			}
+			//System.exit(1);
 		});
 		this.getChildren().addAll(selectFile,naive,naiveUpgraded,upgrade,print,quit);
 	}
