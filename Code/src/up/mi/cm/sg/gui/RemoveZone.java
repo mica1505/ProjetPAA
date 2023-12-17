@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import up.mi.cm.sg.AgglomerationGUI;
+import up.mi.cm.sg.ExeptionChangesArea;
 
 public class RemoveZone extends FlowPane{
 	public RemoveZone(Stage stage) {
@@ -21,10 +22,12 @@ public class RemoveZone extends FlowPane{
 		add.setOnAction(event->{
 			try {
 				if(AgglomerationGUI.agg.getCity(city1.getText().toUpperCase())!=null) {
-					AgglomerationGUI.agg.removeZone(AgglomerationGUI.agg.getCity(city1.getText().toUpperCase()));
+					AgglomerationGUI.agg.removeZone(AgglomerationGUI.agg.getCity(city1.getText()));
+				}else {
+					System.out.println("Veuillez saisir un nom de ville valide.");
 				}
 			}
-			catch(Exception e) {
+			catch(ExeptionChangesArea e) {
 				System.out.println(e.getMessage());
 			}
 			//on revient sur le menu de depart

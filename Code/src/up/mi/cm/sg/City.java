@@ -20,7 +20,7 @@ public class City implements Comparable<City>{
 	 * @param name
 	 */
 	public City(String name) {
-		this.name = name.toUpperCase();
+		this.name = name;
 		cities = new ArrayList<>();
 		this.containZone = true;
 	}

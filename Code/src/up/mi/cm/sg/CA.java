@@ -91,12 +91,22 @@ public class CA{
 		
 		do {
 			cr1 = IO.SaisieString(sc, "\nEntrez le nom de la premiere ville : ");
-		}while(nbCities <= 26 && cr1.length() >= 1 && (cr1.charAt(0)<'A'||cr1.charAt(0)>='A'+nbCities)|| nbCities > 26 && (Integer.parseInt(cr1)<0 || Integer.parseInt(cr1)>nbCities));
+			if(getCity(cr1)==null) {
+				System.out.println("Veuillez saisir un nom de ville valide.");
+			}
+		}while(getCity(cr1)==null);
 		do {
+
 			cr2 = IO.SaisieString(sc, "\nEntrez le nom de la seconde ville : ");
-		}while(nbCities <= 26 && cr2.length() >= 1 && (cr2.charAt(0)<'A'|| cr2.charAt(0)>='A'+nbCities)|| nbCities > 26 && (Integer.parseInt(cr2)<0 || Integer.parseInt(cr2)>nbCities)||cr1.equals(cr2));
-		c1 = getCity(cr1.toUpperCase());
-		c2 =  getCity(cr2.toUpperCase());
+			if(getCity(cr2)==null) {
+				System.out.println("Veuillez saisir un nom de ville valide.");
+			}
+			if(cr1.equals(cr2)) {
+				System.out.println("Une ville ne peut pas etre voisine d'elle meme.");
+			}
+		}while(getCity(cr2)==null || cr1.equals(cr2));
+		c1 = getCity(cr1);
+		c2 =  getCity(cr2);
 		
 		c1.addNeighbour(c2);
 		
@@ -109,10 +119,14 @@ public class CA{
 		City c;
 		String cName;
 		
-		System.out.print("\nEntrez le nom de la ville : ");
-		cName = sc.next();
-		
-		c = getCity(cName.toUpperCase());
+		do {
+			System.out.print("\nEntrez le nom de la ville : ");
+			cName = sc.next();
+			c = getCity(cName);
+			if(c == null) {
+				System.out.println("Veuillez saisir un nom de ville valide.");
+			}
+		}while(c == null);
 		
 		try {
 			addZone(c);
@@ -141,10 +155,15 @@ public class CA{
  		City c;
 		String cName;
 		
-		System.out.print("\nEntrez le nom de la ville : ");
-		cName = sc.next();
-		
-		c = getCity(cName.toUpperCase());
+		do {
+			System.out.print("\nEntrez le nom de la ville : ");
+			cName = sc.next();
+			
+			c = getCity(cName);
+			if(c == null) {
+				System.out.println("Veuillez saisir un nom de ville valide.");
+			}
+		}while(c == null);
 		
 		try {
 			removeZone(c);
@@ -262,6 +281,9 @@ public class CA{
 			}
 		}
 	}
+	/**
+	 * 
+	 */
 	public void algorithmeGlouton() {
 		Collections.sort(agglomeration);
 		for(City c : agglomeration) {

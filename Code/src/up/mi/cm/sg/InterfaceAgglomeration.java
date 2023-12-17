@@ -27,7 +27,10 @@ public class InterfaceAgglomeration {
 	 */
 	public static void initAgglomeration() {
 		Scanner sc = new Scanner(System.in);
-		int nbCities = IO.SaisieInt(sc,"\nEntrez le nombre de villes : ");
+		int nbCities=0;
+		do {
+			nbCities= IO.SaisieInt(sc,"\nEntrez le nombre de villes : ");
+		}while(nbCities<=3);
 		
 		CA agg = new CA(nbCities);
 		
@@ -65,7 +68,7 @@ public class InterfaceAgglomeration {
 	public static void menuHumanOrComputer(Scanner sc, CA agg) {
 		boolean quit = false;
 		while(!quit) {
-			String choiceB = IO.SaisieString(sc, "\nComment veut tu resoudre se le probleme en tans que hummain (H) ou ordinateur (O) : ");
+			String choiceB = IO.SaisieString(sc, "\nComment veux-tu resoudre se le probleme en tans que hummain (H) ou ordinateur (O) : ");
 			if(choiceB.equals("H") || choiceB.equals("h")) {
 				menuHuman(sc, agg);
 				quit = true;

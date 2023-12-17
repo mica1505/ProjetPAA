@@ -25,8 +25,17 @@ public class AddCityPane extends FlowPane{
 		fCity2.getChildren().addAll(new Label("Nom de la seconde ville "),city2);
 		
 		add.setOnAction(event->{
-			if(AgglomerationGUI.agg.getCity(city1.getText().toUpperCase())!= null && AgglomerationGUI.agg.getCity(city2.getText().toUpperCase())!=null){
-				AgglomerationGUI.agg.getCity(city1.getText().toUpperCase()).addNeighbour(AgglomerationGUI.agg.getCity(city2.getText().toUpperCase()));
+			//revoir ici la condition
+			boolean nonNull = AgglomerationGUI.agg.getCity(city1.getText())!= null && AgglomerationGUI.agg.getCity(city2.getText())!=null;
+			boolean differentCity = !(city1.getText().equals(city2.getText()));
+			if(nonNull && differentCity){
+				AgglomerationGUI.agg.getCity(city1.getText()).addNeighbour(AgglomerationGUI.agg.getCity(city2.getText()));
+			}
+			else {
+				if(nonNull)
+					System.out.println("Veuillez saisir des noms de villes valides.");
+				if(!differentCity)
+					System.out.println("Une ville ne peut pas etre voisine d'elle meme.");
 			}
 			//on revient sur le menu de depart
 			stage.setScene(AgglomerationGUI.menu1);
