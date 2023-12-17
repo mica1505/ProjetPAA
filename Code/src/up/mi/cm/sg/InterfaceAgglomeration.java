@@ -13,26 +13,26 @@ public class InterfaceAgglomeration {
 	 * @param args
 	 */
 	public static void main(String [] args) {
-		initAgglomeration();
+		initAgglomeration(args[0]);
 	}
 	/***
 	 * 
 	 * @return
 	 */
-	public static CA readAgglomeration() {
-		return ParseAgglomeration.parseAgg("C:\\Users\\pc\\Documents\\L3\\ProjetPAA\\Code\\src\\up\\mi\\cm\\sg\\test.ca");
+	public static CA readAgglomeration(String path) {
+		return ParseAgglomeration.parseAgg(path);
 	}
 	/**
 	 * 
 	 */
-	public static void initAgglomeration() {
+	public static void initAgglomeration(String path) {
 		Scanner sc = new Scanner(System.in);
 		int nbCities=0;
 		do {
 			nbCities= IO.SaisieInt(sc,"\nEntrez le nombre de villes : ");
 		}while(nbCities<=3);
 		
-		CA agg = new CA(nbCities);
+		CA agg = readAgglomeration(path);
 		
 		menu1(sc,agg);
 		menuHumanOrComputer(sc,agg);
