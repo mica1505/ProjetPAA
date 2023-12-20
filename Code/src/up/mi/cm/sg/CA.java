@@ -91,10 +91,10 @@ public class CA{
 		
 		do {
 			cr1 = IO.SaisieString(sc, "\nEntrez le nom de la premiere ville : ");
-		}while(nbCities <= 26 && cr1.length() >= 1 && (cr1.charAt(0)<'A'||cr1.charAt(0)>='A'+nbCities)|| nbCities > 26 && (Integer.parseInt(cr1)<0 || Integer.parseInt(cr1)>nbCities));
+		}while(getCity(cr1) == null);
 		do {
 			cr2 = IO.SaisieString(sc, "\nEntrez le nom de la seconde ville : ");
-		}while(nbCities <= 26 && cr2.length() >= 1 && (cr2.charAt(0)<'A'|| cr2.charAt(0)>='A'+nbCities)|| nbCities > 26 && (Integer.parseInt(cr2)<0 || Integer.parseInt(cr2)>nbCities)||cr1.equals(cr2));
+		}while(getCity(cr2) == null || cr1.equals(cr2));
 		c1 = getCity(cr1.toUpperCase());
 		c2 =  getCity(cr2.toUpperCase());
 		

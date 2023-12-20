@@ -15,6 +15,7 @@ public class SecondMenuPane extends FlowPane{
 		Button add = new Button("Ajouter une zone");
 		Button remove = new Button("Supprimer une zone");
 		Button print = new Button("Afficher");
+		Button save = new Button("Save");
 		Button end = new Button("Fin");
 		AfficherGraphStream a  = new AfficherGraphStream();
 		
@@ -41,6 +42,9 @@ public class SecondMenuPane extends FlowPane{
 			stage.setScene(new Scene(new AfficherPane(stage,2)));
 		});
 		
-		this.getChildren().addAll(add,remove,print,end);
+		save.setOnAction(event->{
+			System.out.println("save");
+		});
+		this.getChildren().addAll(add,remove,print, save,end);
 	}
 }

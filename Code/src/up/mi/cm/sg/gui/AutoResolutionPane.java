@@ -27,6 +27,7 @@ public class AutoResolutionPane extends FlowPane{
 		Button naiveUpgraded = new Button("Resolution naive optimisee");
 		Button upgrade = new Button("Resolution gloutonne");
 		Button print = new Button("Afficher");
+		Button save = new Button("Save");
 		Button quit = new Button("Fin");
 		
 		AfficherGraphStream a  = new AfficherGraphStream();
@@ -66,6 +67,16 @@ public class AutoResolutionPane extends FlowPane{
 				stage.setScene(new Scene(new AfficherPane(stage,0)));
 			}
 		});
+		save.setOnAction(event->{
+			System.out.println("save");
+			File aggFile = explore.showOpenDialog(stage);
+			String path = ""; 
+			if(aggFile!=null) {
+				path = aggFile.getAbsolutePath();
+				ParseAgglomeration.writeCA(AgglomerationGUI.agg, path);
+			}
+			
+		});
 		
 		quit.setOnAction(event->{
 			try {
@@ -77,7 +88,7 @@ public class AutoResolutionPane extends FlowPane{
 			}
 			//System.exit(1);
 		});
-		this.getChildren().addAll(selectFile,naive,naiveUpgraded,upgrade,print,quit);
+		this.getChildren().addAll(selectFile,naive,naiveUpgraded,upgrade,print,save,quit);
 	}
 
 }
