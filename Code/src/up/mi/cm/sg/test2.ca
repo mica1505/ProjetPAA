@@ -1,0 +1,6 @@
+ville(B)
+ville(A)
+ville(C)
+route(B,A)
+route(B,C)
+recharge(B)

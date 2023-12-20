@@ -15,7 +15,6 @@ public class MainPane extends FlowPane{
 		this.setAlignment(Pos.CENTER);
 		Button man = new Button("Resoudre manuellement");
 		Button auto = new Button("Resoudre automatiquement");
-		Button save = new Button("Save");
 		Button end = new Button("Fin");
 		
 		man.setOnAction(event->{
@@ -27,15 +26,11 @@ public class MainPane extends FlowPane{
 			stage.setScene(new Scene(new AutoResolutionPane(stage),300,300));
 		});
 		
-		save.setOnAction(event->{
-			System.out.println("save");
-		});
-		
 		end.setOnAction(event->{
 			System.exit(1);
 		});
 		
-		this.getChildren().addAll(man,auto,save,end);
+		this.getChildren().addAll(man,auto,end);
 	}
 	
 }

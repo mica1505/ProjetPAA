@@ -1,9 +1,8 @@
 package up.mi.cm.sg;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 public class ParseAgglomeration {
 	/**
@@ -56,6 +55,52 @@ public class ParseAgglomeration {
 		}
 		agg.setNbCities(nbCities);
 		return agg;
+	}
+	public static void writeCA(CA agg, String File) {
+		FileOutputStream fos;
+		try {
+			fos = new FileOutputStream(File);
+			Writer out = new OutputStreamWriter(fos, "UTF8");
+			writeCities(agg, out);
+			writeNeighbours(agg, out);
+			writeZones(agg, out);
+			out.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	
+	}
+	public static void writeCities(CA agg, Writer writer) throws IOException{
+		for(City c : agg.getCA()) {
+			writer.write("ville(" + c.getName() + ")\n");
+		}
+	}
+	public static void writeNeighbours(CA agg, Writer writer) throws IOException{
+		ArrayList<String> voisinage = new  ArrayList<String>();
+		for(City c : agg.getCA()) {
+			for(City v : c.getCities()) {
+				if(!voisinage.contains("route("+c.getName()+","+v.getName()+")\n")) {
+					writer.write("route("+c.getName()+","+v.getName()+")\n");
+					voisinage.add("route("+v.getName()+","+c.getName()+")\n");
+				}
+			}
+		}
+		
+	}
+	public static void writeZones(CA agg, Writer writer) throws IOException{
+		for(City c : agg.getCA()) {
+			if(c.getZone()) {
+				writer.write("recharge("+c.getName()+")\n");
+			}
+		}
 	}
 	/**
 	 * 
