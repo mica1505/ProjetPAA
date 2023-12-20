@@ -2,6 +2,7 @@ package up.mi.cm.sg.gui;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 import java.io.File;
 
@@ -11,6 +12,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import up.mi.cm.sg.AgglomerationGUI;
+import up.mi.cm.sg.ExeptionChangesArea;
 import up.mi.cm.sg.ParseAgglomeration;
 
 public class MainPane extends FlowPane{
@@ -23,6 +25,7 @@ public class MainPane extends FlowPane{
 		explore.setTitle("Choisissez un fichier");
 		
 		Button selectFile = new Button("Selectionner un fichier");
+		Label erreur = new Label("");
 		Button man = new Button("Resoudre manuellement");
 		Button auto = new Button("Resoudre automatiquement");
 		Button save = new Button("Sauvegarder");
@@ -34,14 +37,21 @@ public class MainPane extends FlowPane{
 			if(aggFile!=null) {
 				AgglomerationGUI.aggPath = aggFile.getAbsolutePath();
 			}
-			AgglomerationGUI.agg = ParseAgglomeration.parseAgg(AgglomerationGUI.aggPath);
+			try {
+				AgglomerationGUI.agg = ParseAgglomeration.parseAgg(AgglomerationGUI.aggPath);
+				erreur.setText(AgglomerationGUI.aggPath);
+			} catch (ExeptionChangesArea e) {
+				AgglomerationGUI.agg = null;
+				erreur.setText("Ficher incorect");
+				e.printStackTrace();
+			}
 			System.out.println(AgglomerationGUI.aggPath);
 		});
 		
 		man.setOnAction(event->{
 			if(AgglomerationGUI.agg!=null) {
 				//redirection vers combien de villes menu
-				stage.setScene(new Scene(new CreateAgg(stage),300,300));
+				stage.setScene(new Scene(new SecondMenuPane(stage),300,300));
 			}
 		});
 		
@@ -88,7 +98,7 @@ public class MainPane extends FlowPane{
 		});
 		
 		
-		this.getChildren().addAll(selectFile,man,auto,save,print,end);
+		this.getChildren().addAll(selectFile, erreur,man,auto,save,print,end);
 	}
 	
 }

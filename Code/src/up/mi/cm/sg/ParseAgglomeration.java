@@ -10,7 +10,7 @@ public class ParseAgglomeration {
 	 * @param file
 	 * @return
 	 */
-	public static CA parseAgg(String file) {
+	public static CA parseAgg(String file) throws ExeptionChangesArea{
 		
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(file));
@@ -21,6 +21,8 @@ public class ParseAgglomeration {
 				data.add(line);
 				if(line.startsWith("ville")) {
 					nbCities++;
+				} else if(!line.startsWith("route") && !line.startsWith("recharge")) {
+					throw new ExeptionChangesArea("\nUn probleme dans lecriture de notre ficher a la linge " + nbCities + "\n");
 				}
 			}
 			//System.out.println(nbCities);
@@ -81,16 +83,16 @@ public class ParseAgglomeration {
 	}
 	public static void writeCities(CA agg, Writer writer) throws IOException{
 		for(City c : agg.getCA()) {
-			writer.write("ville(" + c.getName() + ")\n");
+			writer.write("ville(" + c.getName() + ").\n");
 		}
 	}
 	public static void writeNeighbours(CA agg, Writer writer) throws IOException{
 		ArrayList<String> voisinage = new  ArrayList<String>();
 		for(City c : agg.getCA()) {
 			for(City v : c.getCities()) {
-				if(!voisinage.contains("route("+c.getName()+","+v.getName()+")\n")) {
-					writer.write("route("+c.getName()+","+v.getName()+")\n");
-					voisinage.add("route("+v.getName()+","+c.getName()+")\n");
+				if(!voisinage.contains("route("+c.getName()+","+v.getName()+").\n")) {
+					writer.write("route("+c.getName()+","+v.getName()+").\n");
+					voisinage.add("route("+v.getName()+","+c.getName()+").\n");
 				}
 			}
 		}
@@ -99,7 +101,7 @@ public class ParseAgglomeration {
 	public static void writeZones(CA agg, Writer writer) throws IOException{
 		for(City c : agg.getCA()) {
 			if(c.getZone()) {
-				writer.write("recharge("+c.getName()+")\n");
+				writer.write("recharge("+c.getName()+").\n");
 			}
 		}
 	}
@@ -110,7 +112,7 @@ public class ParseAgglomeration {
 	 * @param community
 	 * @return
 	 */
-	public static CA readNeighbours(ArrayList<String> data,int nbCities,CA community){
+	public static CA readNeighbours(ArrayList<String> data,int nbCities,CA community) throws ExeptionChangesArea{
 		String line = null;
 		City a,b;
 		//System.out.println("JE SUIS DANS READ NEIGHBOURS "+nbCities);
@@ -122,6 +124,8 @@ public class ParseAgglomeration {
 				b = community.getCity(line.split("\\(")[1].split(",")[1].split("\\)")[0]);
 				//System.out.println(line.split("\\(")[1].split(",")[0]+"--"+line.split("\\(")[1].split(",")[1].split("\\)")[0]);
 				a.addNeighbour(b);
+			}else if(!line.startsWith("ville") && !line.startsWith("recharge")) {
+				throw new ExeptionChangesArea("\nUn probleme dans lecriture de notre ficher a la linge " + i + "\n");
 			}
 		}
 		//community.printAgglomeration();
@@ -133,14 +137,26 @@ public class ParseAgglomeration {
 	 * @param nbCities
 	 * @param community
 	 */
-	public static void readZones(ArrayList<String> data,int nbCities,CA community) {
+	public static void readZones(ArrayList<String> data,int nbCities,CA community) throws ExeptionChangesArea{
 		String line = null;
+		boolean valide = true;
 		City a,b;
 		for(int i=nbCities;i<data.size();i++) {
 			line=data.get(i); 
 			if(line.startsWith("recharge")) {
 				a = community.getCity(line.split("\\(")[1].split("\\)")[0]);
 				a.setZone(true);
+			}else if(!line.startsWith("route") && !line.startsWith("ville")) {
+				throw new ExeptionChangesArea("\nUn probleme dans lecriture de notre ficher a la linge " + i + "\n");
+			}
+			
+		}
+		for(City c : community.getCA()) {
+			valide &= c.hasNeighbourZone();
+		}
+		if(!valide) {
+			for(City c : community.getCA()) {
+				c.setZone(true);
 			}
 		}
 	}

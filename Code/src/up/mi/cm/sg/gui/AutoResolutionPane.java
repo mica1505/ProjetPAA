@@ -12,6 +12,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import up.mi.cm.sg.AgglomerationGUI;
+import up.mi.cm.sg.ExeptionChangesArea;
 import up.mi.cm.sg.ParseAgglomeration;
 
 public class AutoResolutionPane extends FlowPane{
@@ -23,6 +24,7 @@ public class AutoResolutionPane extends FlowPane{
 		explore.setTitle("Choisissez un fichier");
 		
 		Button selectFile = new Button("Selectionner un fichier");
+		Label erreur = new Label("");
 		Button naive = new Button("Resolution naive");
 		Button naiveUpgraded = new Button("Resolution naive optimisee");
 		Button upgrade = new Button("Resolution gloutonne");
@@ -36,8 +38,15 @@ public class AutoResolutionPane extends FlowPane{
 			File aggFile = explore.showOpenDialog(stage);
 			if(aggFile!=null) {
 				AgglomerationGUI.aggPath = aggFile.getAbsolutePath();
+				erreur.setText(AgglomerationGUI.aggPath);
 			}
-			AgglomerationGUI.agg = ParseAgglomeration.parseAgg(AgglomerationGUI.aggPath);
+			try {
+				AgglomerationGUI.agg = ParseAgglomeration.parseAgg(AgglomerationGUI.aggPath);
+			} catch (ExeptionChangesArea e) {
+				AgglomerationGUI.agg = null;
+				erreur.setText("Ficher incorect");
+				e.printStackTrace();
+			}
 			System.out.println(AgglomerationGUI.aggPath);
 		});
 		naive.setOnAction(event->{
@@ -87,7 +96,7 @@ public class AutoResolutionPane extends FlowPane{
 			}
 			//System.exit(1);
 		});
-		this.getChildren().addAll(selectFile,naive,naiveUpgraded,upgrade,print,save,quit);
+		this.getChildren().addAll(selectFile, erreur,naive,naiveUpgraded,upgrade,print,save,quit);
 	}
 
 }
