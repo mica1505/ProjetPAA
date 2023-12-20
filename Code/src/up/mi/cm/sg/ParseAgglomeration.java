@@ -49,7 +49,8 @@ public class ParseAgglomeration {
 		CA agg = new CA();
 		for(int i=0;i<nbCities;i++) {
 			line = data.get(i);
-			City nCity = new City(line.substring(6,7));
+			//System.out.print(line.substring(6,line.length()-2));
+			City nCity = new City(line.substring(6,line.length()-2));
 			nCity.setZone(false);
 			agg.addCity(nCity);
 		}

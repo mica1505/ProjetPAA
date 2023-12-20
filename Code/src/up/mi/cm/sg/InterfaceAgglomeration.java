@@ -27,14 +27,9 @@ public class InterfaceAgglomeration {
 	 */
 	public static void initAgglomeration(String path) {
 		Scanner sc = new Scanner(System.in);
-		int nbCities=0;
-		do {
-			nbCities= IO.SaisieInt(sc,"\nEntrez le nombre de villes : ");
-		}while(nbCities<=3);
 		
 		CA agg = readAgglomeration(path);
 		
-		menu1(sc,agg);
 		menuHumanOrComputer(sc,agg);
 		sc.close();
 		System.out.print(agg);
@@ -68,13 +63,27 @@ public class InterfaceAgglomeration {
 	public static void menuHumanOrComputer(Scanner sc, CA agg) {
 		boolean quit = false;
 		while(!quit) {
-			String choiceB = IO.SaisieString(sc, "\nComment veux-tu resoudre se le probleme en tans que hummain (H) ou ordinateur (O) : ");
-			if(choiceB.equals("H") || choiceB.equals("h")) {
+			int choiceB;
+			do {
+				choiceB = IO.SaisieInt(sc, "\n1) Resoudre manuellement.\n2) Resoudre Automatiquement.\n3) Sauvegarder.\n4) Fin ");
+				if(choiceB<0 || choiceB>4) {
+					System.out.println("Vous devez saisir un chiffre entre 1 et 4.");
+				}
+			}while(choiceB<0 || choiceB>4);
+			
+			if(choiceB == 1) {
 				menuHuman(sc, agg);
 				quit = true;
 			}
-			else if(choiceB.equals("O") || choiceB.equals("o")) {
+			else if(choiceB==2) {
 				menuComputer(sc, agg);
+				quit = true;
+			}
+			else if(choiceB == 3){
+				String chemin = IO.SaisieString(sc, "\nVeuillez saisir le chemin du fichier dans le quel vous voulez enregistrer votre agglomeration : ");
+				ParseAgglomeration.writeCA(agg,chemin);
+			}
+			else if(choiceB == 4) {
 				quit = true;
 			}
 		}
@@ -105,26 +114,7 @@ public class InterfaceAgglomeration {
 	 * @param agg
 	 */
 	public static void menuComputer(Scanner sc, CA agg) {
-		boolean quit = false;
-		int k;
-		while(!quit) {
-			int choice = IO.SaisieInt(sc, "\n1) Premier algorithme naïf.\n2) Second une borne\n3) Algorithme glouton.");
-			switch(choice){
-				case 1:
-					k = IO.SaisieInt(sc, "\nLe nombre de itetrations de la simulations.");
-					agg.naiveSolutions(k);
-					quit = true;
-					break;
-				case 2:
-					k = IO.SaisieInt(sc, "\nLe nombre de itetrations de la simulations.");
-					agg.naiveSolutions2(k);
-					quit = true;
-					break;
-				case 3:
-					agg.algorithmeGlouton();
-					quit = true;
-					break;
-			}
-		}
+		agg.algorithmeGlouton();
+		System.out.println(agg);
 	}
 }

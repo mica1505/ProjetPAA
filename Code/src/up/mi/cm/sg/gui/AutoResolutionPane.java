@@ -75,7 +75,6 @@ public class AutoResolutionPane extends FlowPane{
 				path = aggFile.getAbsolutePath();
 				ParseAgglomeration.writeCA(AgglomerationGUI.agg, path);
 			}
-			
 		});
 		
 		quit.setOnAction(event->{

@@ -32,7 +32,7 @@ public class AfficherGraphStream extends Application {
         
         for(City c : CA) {
         	Node n = graph.addNode(c.getName());
-        	n.setAttribute("ui.class", c.getZone() ? "Red" : "Blue");
+        	n.setAttribute("ui.style", c.getZone() ? "fill-color: green;" : "fill-color: red;");
         }
         String nameCity, nameVoisin;
         

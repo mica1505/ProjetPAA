@@ -23,6 +23,9 @@ public class AfficherPane extends FlowPane{
 			if(numMenu == 2) {
 				s.setScene(AgglomerationGUI.menu2);
 			}
+			if(numMenu == 3) {
+				s.setScene(AgglomerationGUI.menuStart);
+			}
 		});
 	}
 }
