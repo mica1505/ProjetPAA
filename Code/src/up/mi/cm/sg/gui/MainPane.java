@@ -46,19 +46,6 @@ public class MainPane extends FlowPane{
 				}
 				System.out.println(AgglomerationGUI.aggPath);
 			}
-<<<<<<< HEAD
-			
-=======
-			try {
-				AgglomerationGUI.agg = ParseAgglomeration.parseAgg(AgglomerationGUI.aggPath);
-				erreur.setText(aggFile.getName());
-			} catch (ExeptionChangesArea e) {
-				AgglomerationGUI.agg = null;
-				erreur.setText("Ficher incorect");
-				e.printStackTrace();
-			}
-			System.out.println(AgglomerationGUI.aggPath);
->>>>>>> f1cc813640a17147fc8ec1ef6fa9150fa68c4756
 		});
 		
 		man.setOnAction(event->{
