@@ -132,7 +132,8 @@ public class ParseAgglomeration {
 		return community;
 	}
 	/**
-	 * 
+	 * On lit les zone de recharge.
+	 * Si elle ne repecte pas les nom corecte on renvois une erreur
 	 * @param data
 	 * @param nbCities
 	 * @param community
@@ -141,6 +142,9 @@ public class ParseAgglomeration {
 		String line = null;
 		boolean valide = true;
 		City a,b;
+		for(City c : community.getCA()) {
+			c.setZone(false);
+		}
 		for(int i=nbCities;i<data.size();i++) {
 			line=data.get(i); 
 			if(line.startsWith("recharge")) {
@@ -152,7 +156,8 @@ public class ParseAgglomeration {
 			
 		}
 		for(City c : community.getCA()) {
-			valide &= c.hasNeighbourZone();
+			valide &= c.hasNeighbourZone() || c.getZone();
+			
 		}
 		if(!valide) {
 			for(City c : community.getCA()) {
