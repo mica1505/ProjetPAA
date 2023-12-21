@@ -36,16 +36,17 @@ public class MainPane extends FlowPane{
 			File aggFile = explore.showOpenDialog(stage);
 			if(aggFile!=null) {
 				AgglomerationGUI.aggPath = aggFile.getAbsolutePath();
+				try {
+					AgglomerationGUI.agg = ParseAgglomeration.parseAgg(AgglomerationGUI.aggPath);
+					erreur.setText(aggFile.getName());
+				} catch (ExeptionChangesArea e) {
+					AgglomerationGUI.agg = null;
+					erreur.setText("Ficher incorect");
+					e.printStackTrace();
+				}
+				System.out.println(AgglomerationGUI.aggPath);
 			}
-			try {
-				AgglomerationGUI.agg = ParseAgglomeration.parseAgg(AgglomerationGUI.aggPath);
-				erreur.setText(AgglomerationGUI.aggPath);
-			} catch (ExeptionChangesArea e) {
-				AgglomerationGUI.agg = null;
-				erreur.setText("Ficher incorect");
-				e.printStackTrace();
-			}
-			System.out.println(AgglomerationGUI.aggPath);
+			
 		});
 		
 		man.setOnAction(event->{
@@ -69,10 +70,12 @@ public class MainPane extends FlowPane{
 			if(AgglomerationGUI.agg!=null) {
 				System.out.println("save");
 				File aggFile = explore.showOpenDialog(stage);
-				String path = ""; 
+				String path = null; 
 				if(aggFile!=null) {
 					path = aggFile.getAbsolutePath();
-					ParseAgglomeration.writeCA(AgglomerationGUI.agg, path);
+					if(path != null) {
+						ParseAgglomeration.writeCA(AgglomerationGUI.agg, path);
+					}
 				}
 			}
 		});

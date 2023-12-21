@@ -22,7 +22,7 @@ public class ParseAgglomeration {
 				if(line.startsWith("ville")) {
 					nbCities++;
 				} else if(!line.startsWith("route") && !line.startsWith("recharge")) {
-					throw new ExeptionChangesArea("\nUn probleme dans lecriture de notre ficher a la linge " + nbCities + "\n");
+					throw new ExeptionChangesArea("\nUn probleme dans lecriture de notre ficher a la linge " + nbCities+1 + "\n");
 				}
 			}
 			//System.out.println(nbCities);
@@ -125,7 +125,7 @@ public class ParseAgglomeration {
 				//System.out.println(line.split("\\(")[1].split(",")[0]+"--"+line.split("\\(")[1].split(",")[1].split("\\)")[0]);
 				a.addNeighbour(b);
 			}else if(!line.startsWith("ville") && !line.startsWith("recharge")) {
-				throw new ExeptionChangesArea("\nUn probleme dans lecriture de notre ficher a la linge " + i + "\n");
+				throw new ExeptionChangesArea("\nUn probleme dans lecriture de notre ficher a la linge " + i+1 + "\n");
 			}
 		}
 		//community.printAgglomeration();
@@ -147,7 +147,7 @@ public class ParseAgglomeration {
 				a = community.getCity(line.split("\\(")[1].split("\\)")[0]);
 				a.setZone(true);
 			}else if(!line.startsWith("route") && !line.startsWith("ville")) {
-				throw new ExeptionChangesArea("\nUn probleme dans lecriture de notre ficher a la linge " + i + "\n");
+				throw new ExeptionChangesArea("\nUn probleme dans lecriture de notre ficher a la linge " + i+1 + "\n");
 			}
 			
 		}
