@@ -145,6 +145,7 @@ public class CA{
 			throw new ExeptionChangesArea("\nLa ville est deja en possession d'une zone de recharge\n");
 		}else {
 			c.setZone(true);
+			System.out.println("La ville "+c.getName()+" est mainteneant en possession d'une zone de recharge.");
 		}
 	}
 /***
@@ -190,6 +191,7 @@ public class CA{
 				throw new ExeptionChangesArea("On ne peut pas supprimer la zone de recharge, car la ville n'est pas reliee directement a une ville qui en possede une.");
 			}
 			else if(c.hasNeighbourZone()) {
+				System.out.println("La ville "+c.getName()+" ne contient plus de zone de recharge.");
 				c.setZone(false);
 			}
 		}
@@ -216,6 +218,14 @@ public class CA{
 		}
 		return sb.toString();
 	}
+	public String allCities() {
+		StringBuilder sb = new StringBuilder("L'agglomeration est composee des villes suivantes : \n");
+		for(int i=0;i<nbCities;i++) {
+			sb.append(agglomeration.get(i).getName()+"  ");
+		}
+		return sb.toString();
+	}
+	
 /***
  * Fonction qui renvois une ville choisie aleatoirement
  * @return City : une ville de l'agglomeration
