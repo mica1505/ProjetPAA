@@ -14,7 +14,7 @@ public class InterfaceAgglomeration {
 	 */
 	public static void main(String [] args) {
 		if(args[0].length() == 0) {
-			System.out.println("Chemint passer invalide");
+			System.out.println("Chemit passe invalide");
 			System.exit(0);
 		}
 		initAgglomeration(args[0]);
@@ -42,10 +42,11 @@ public class InterfaceAgglomeration {
 		if(agg == null) {
 			System.exit(0);
 		}
-		
+		System.out.println(agg.allCities());
 		menuHumanOrComputer(sc,agg);
 		sc.close();
 		System.out.print(agg);
+		System.out.print(agg.allZones());
 	}
 	/***
 	 * 
@@ -135,6 +136,6 @@ public class InterfaceAgglomeration {
 	 */
 	public static void menuComputer(Scanner sc, CA agg) {
 		agg.algorithmeGlouton();
-		System.out.println(agg);
+		System.out.println(agg.allZones());
 	}
 }

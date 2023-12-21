@@ -39,7 +39,7 @@ public class MainPane extends FlowPane{
 			}
 			try {
 				AgglomerationGUI.agg = ParseAgglomeration.parseAgg(AgglomerationGUI.aggPath);
-				erreur.setText(AgglomerationGUI.aggPath);
+				erreur.setText(aggFile.getName());
 			} catch (ExeptionChangesArea e) {
 				AgglomerationGUI.agg = null;
 				erreur.setText("Ficher incorect");
