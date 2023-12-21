@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import up.mi.cm.sg.AgglomerationGUI;
+import up.mi.cm.sg.ExeptionChangesArea;
 import up.mi.cm.sg.ParseAgglomeration;
 
 public class InputResNaivePane extends FlowPane{
@@ -22,7 +23,13 @@ public class InputResNaivePane extends FlowPane{
 		
 		solve.setOnAction(event->{
 			if(AgglomerationGUI.aggPath!=null && tf.getText()!=null) {
-				AgglomerationGUI.agg = ParseAgglomeration.parseAgg(AgglomerationGUI.aggPath);
+				try {
+					AgglomerationGUI.agg = ParseAgglomeration.parseAgg(AgglomerationGUI.aggPath);
+					
+				} catch (ExeptionChangesArea e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				AgglomerationGUI.agg.naiveSolutions(Integer.valueOf(tf.getText()));
 			}
 			stage.setScene(new Scene(new AfficherPane(stage,0)));

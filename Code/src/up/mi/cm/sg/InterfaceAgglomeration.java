@@ -13,6 +13,10 @@ public class InterfaceAgglomeration {
 	 * @param args
 	 */
 	public static void main(String [] args) {
+		if(args[0].length() == 0) {
+			System.out.println("Chemint passer invalide");
+			System.exit(0);
+		}
 		initAgglomeration(args[0]);
 	}
 	/***
@@ -20,7 +24,13 @@ public class InterfaceAgglomeration {
 	 * @return
 	 */
 	public static CA readAgglomeration(String path) {
-		return ParseAgglomeration.parseAgg(path);
+		try {
+			return ParseAgglomeration.parseAgg(path);
+		} catch (ExeptionChangesArea e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+		return null;
 	}
 	/**
 	 * 
@@ -29,6 +39,9 @@ public class InterfaceAgglomeration {
 		Scanner sc = new Scanner(System.in);
 		
 		CA agg = readAgglomeration(path);
+		if(agg == null) {
+			System.exit(0);
+		}
 		
 		menuHumanOrComputer(sc,agg);
 		sc.close();
