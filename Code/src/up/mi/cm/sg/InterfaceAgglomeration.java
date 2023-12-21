@@ -14,7 +14,7 @@ public class InterfaceAgglomeration {
 	 */
 	public static void main(String [] args) {
 		if(args[0].length() == 0) {
-			System.out.println("Chemit passe invalide");
+			System.out.println("Chemin passe invalide");
 			System.exit(0);
 		}
 		initAgglomeration(args[0]);
