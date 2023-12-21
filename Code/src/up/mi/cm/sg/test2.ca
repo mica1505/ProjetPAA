@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ville(H).
 ville(ChoisyLeRoi).
 ville(Orleans).
@@ -26,6 +25,3 @@ recharge(H).
 recharge(Orleans).
 recharge(E).
 recharge(Paris).
-=======
-
->>>>>>> f1cc813640a17147fc8ec1ef6fa9150fa68c4756

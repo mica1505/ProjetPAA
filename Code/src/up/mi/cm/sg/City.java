@@ -82,12 +82,15 @@ public class City implements Comparable<City>{
 	 * @return un String contenant le nom de la ville actuelle, indique la presence station de recharge et ses villes voisines
 	 */
 	public String toString() {
-		StringBuffer sbf = new StringBuffer("\nNom de la ville: " + this.name + "\nA une station de recharge : "+(this.getZone()?"Oui\n":"Non\n")+"Les villes voisines : ");
+		StringBuffer sbf = new StringBuffer("\n"+this.name + " : "+(this.getZone()?"Oui ":"Non ")+"[");
 		for(int i=0;i<this.cities.size();i++) {
 			if(this.cities.size()>0) {
-				sbf.append(this.cities.get(i).getName() + "  ");
+				sbf.append(this.cities.get(i).getName() + " ");
+				sbf.append(this.cities.get(i).getZone()?": Oui ":": Non ");
 			}
+			
 		}
+		sbf.append("]");
 		return sbf.toString();
 	}
 	/***

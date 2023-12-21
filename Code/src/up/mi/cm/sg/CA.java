@@ -92,14 +92,14 @@ public class CA{
 		do {
 			cr1 = IO.SaisieString(sc, "\nEntrez le nom de la premiere ville : ");
 			if(getCity(cr1)==null) {
-				System.out.println("Veuillez saisir un nom de ville valide.");
+				System.out.println("Ville introuvable. Veuillez saisir un nom de ville valide.");
 			}
 		}while(getCity(cr1)==null);
 		do {
 
 			cr2 = IO.SaisieString(sc, "\nEntrez le nom de la seconde ville : ");
 			if(getCity(cr2)==null) {
-				System.out.println("Veuillez saisir un nom de ville valide.");
+				System.out.println("Ville introuvable. Veuillez saisir un nom de ville valide.");
 			}
 			if(cr1.equals(cr2)) {
 				System.out.println("Une ville ne peut pas etre voisine d'elle meme.");
@@ -124,7 +124,7 @@ public class CA{
 			cName = sc.next();
 			c = getCity(cName);
 			if(c == null) {
-				System.out.println("Veuillez saisir un nom de ville valide.");
+				System.out.println("Ville introuvable. Veuillez saisir un nom de ville valide.");
 			}
 		}while(c == null);
 		
@@ -162,7 +162,7 @@ public class CA{
 			
 			c = getCity(cName);
 			if(c == null) {
-				System.out.println("Veuillez saisir un nom de ville valide.");
+				System.out.println("Ville introuvable. Veuillez saisir un nom de ville valide.");
 			}
 		}while(c == null);
 		
@@ -200,7 +200,7 @@ public class CA{
  * Fonction qui affiche les villes qui possedent une zone de recharge
  */
 	public String allZones() {
-		StringBuilder sb = new StringBuilder("\nLes villes qui possedent des zones de recharge sont : ");
+		StringBuilder sb = new StringBuilder("\nLes villes qui possedent des zones de recharge sont : \n");
 		for(int i=0;i<nbCities;i++) {
 			if(agglomeration.get(i).getZone()) {
 				sb.append(agglomeration.get(i).getName()+"  ");

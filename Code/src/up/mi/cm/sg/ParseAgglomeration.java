@@ -28,6 +28,7 @@ public class ParseAgglomeration {
 			}
 			//on lit les villes
 			CA agg = readCities(data,nbCities);
+			//System.out.println(agg);
 			//on lit les voisins
 			readNeighbours(data,nbCities,agg);
 			//on lit les zones des villes
