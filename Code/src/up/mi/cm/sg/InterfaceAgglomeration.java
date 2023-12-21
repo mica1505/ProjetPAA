@@ -67,20 +67,21 @@ public class InterfaceAgglomeration {
 			do {
 				choiceB = IO.SaisieInt(sc, "\n1) Resoudre manuellement.\n2) Resoudre Automatiquement.\n3) Sauvegarder.\n4) Fin ");
 				if(choiceB<0 || choiceB>4) {
-					System.out.println("Vous devez saisir un chiffre entre 1 et 4.");
+					System.out.println("Veuillez saisir un chiffre entre 1 et 4.");
 				}
 			}while(choiceB<0 || choiceB>4);
 			
 			if(choiceB == 1) {
 				menuHuman(sc, agg);
-				quit = true;
 			}
 			else if(choiceB==2) {
 				menuComputer(sc, agg);
-				quit = true;
 			}
 			else if(choiceB == 3){
-				String chemin = IO.SaisieString(sc, "\nVeuillez saisir le chemin du fichier dans le quel vous voulez enregistrer votre agglomeration : ");
+				String chemin;
+				do {
+					chemin = IO.SaisieString(sc, "\nVeuillez saisir le chemin du fichier dans le quel vous voulez enregistrer votre agglomeration : ");
+				}while(chemin == "" || chemin == null);
 				ParseAgglomeration.writeCA(agg,chemin);
 			}
 			else if(choiceB == 4) {
@@ -96,7 +97,13 @@ public class InterfaceAgglomeration {
 	public static void menuHuman(Scanner sc, CA agg) {
 		boolean quit = false;
 		while(!quit) {
-			int choice = IO.SaisieInt(sc, "\n1) Ajouter une borne.\n2) Supprimer une borne.\n3) Fin.");
+			int choice;
+			do {
+				choice = IO.SaisieInt(sc, "\n1) Ajouter une borne.\n2) Supprimer une borne.\n3) Fin.");
+				if (choice<0 || choice>3) {
+					System.out.println("Veuillez saisir un chiffre entre 1 et 4.");
+				}
+			}while(choice<0 || choice>3);
 			if(choice == 1) {
 				agg.addZoneUser(sc);
 			}
