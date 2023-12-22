@@ -21,14 +21,18 @@ public class ParseAgglomeration {
 			ArrayList<String> data = new ArrayList<String>();
 			String line = null;
 			int nbCities = 0;
+			boolean empty = false;
 			//on recupere les lignes du fichier dans une liste
-			while((line=br.readLine())!=null) {
-				data.add(line);
+			while((line=br.readLine())!=null && !empty) {
+				empty = line.equals("");
+				if(!empty) {
+					data.add(line);
+				}
 				if(line.startsWith("ville")) {
 					nbCities++;
-				} //on vérifie si il y a un mot qui ne correspond a rien
-				else if(!line.startsWith("route") && !line.startsWith("recharge")) {
-					throw new ExeptionChangesArea("\nUn probleme dans la lecture de notre ficher a la linge " + nbCities + "\n");
+				} //on vérifie si il y a un mot qui ne correspond a rien et que la chaine n'est pas vide
+				else if(!line.startsWith("route") && !line.startsWith("recharge") && !empty) {
+					throw new ExeptionChangesArea("\nUn probleme dans l'ecture de notre ficher a la linge " + nbCities + "\n");
 				}
 			}
 			//on lit les villes
@@ -156,9 +160,6 @@ public class ParseAgglomeration {
 				b = community.getCity(line.split("\\(")[1].split(",")[1].split("\\)")[0]);
 				//on rajoute b aux voisins de a
 				a.addNeighbour(b);
-			}//on vérifie si il y a un mots qui ne correspond a rien
-			else if(!line.startsWith("ville") && !line.startsWith("recharge")) {
-				throw new ExeptionChangesArea("\nUn probleme dans lecriture de notre ficher a la linge " + i + "\n");
 			}
 		}
 		//community.printAgglomeration();
@@ -188,9 +189,6 @@ public class ParseAgglomeration {
 				a = community.getCity(line.split("\\(")[1].split("\\)")[0]);
 				//on lui ajoute une zone de recharge
 				a.setZone(true);
-			}//on vérifie si il y a un mot qui ne correspond a rien
-			else if(!line.startsWith("route") && !line.startsWith("ville")) {
-				throw new ExeptionChangesArea("\nUn probleme dans lecriture de notre ficher a la linge " + i + "\n");
 			}
 			
 		}

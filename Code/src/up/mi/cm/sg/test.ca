@@ -22,5 +22,6 @@ route(Versailles,E).
 route(E,F).
 route(E,G).
 recharge(H).
+recharge(Orleans).
 recharge(E).
 recharge(Paris).

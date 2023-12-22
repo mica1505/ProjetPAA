@@ -8,7 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import up.mi.cm.sg.AgglomerationGUI;
 /**
- * Classe qui represente le panneau qui contient le second menu, dans le cas d'une resolution manuelle
+ * Classe qui represente le panneau qui contient le second menu, dans le cas d'une resolution manuelle (humain)
  * @author 
  *
  */
