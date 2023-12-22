@@ -21,10 +21,10 @@ public class RemoveZone extends FlowPane{
 		
 		add.setOnAction(event->{
 			try {
-				if(AgglomerationGUI.agg.getCity(city1.getText().toUpperCase())!=null) {
+				if(AgglomerationGUI.agg.getCity(city1.getText())!=null) {
 					AgglomerationGUI.agg.removeZone(AgglomerationGUI.agg.getCity(city1.getText()));
 				}else {
-					System.out.println("Veuillez saisir un nom de ville valide.");
+					System.out.println("Ville introuvable. Veuillez saisir un nom de ville valide.");
 				}
 			}
 			catch(ExeptionChangesArea e) {

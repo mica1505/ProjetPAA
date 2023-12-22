@@ -33,7 +33,7 @@ public class AddCityPane extends FlowPane{
 			}
 			else {
 				if(nonNull)
-					System.out.println("Veuillez saisir des noms de villes valides.");
+					System.out.println("Ville introuvable. Veuillez saisir un nom de ville valide.");
 				if(!differentCity)
 					System.out.println("Une ville ne peut pas etre voisine d'elle meme.");
 			}

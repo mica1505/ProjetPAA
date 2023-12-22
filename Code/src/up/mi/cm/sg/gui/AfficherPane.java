@@ -10,7 +10,7 @@ public class AfficherPane extends FlowPane{
 	public AfficherPane(Stage s,int numMenu) {
 		TextArea ta = new TextArea();
 		Button b = new Button("Menu");
-		ta.setText(AgglomerationGUI.agg.toString());
+		ta.setText(AgglomerationGUI.agg.allZones()+"\n"+AgglomerationGUI.agg.toString());
 		this.getChildren().addAll(ta,b);
 		
 		b.setOnAction(event->{

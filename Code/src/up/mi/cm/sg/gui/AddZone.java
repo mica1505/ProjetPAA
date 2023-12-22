@@ -25,7 +25,7 @@ public class AddZone extends FlowPane{
 					AgglomerationGUI.agg.addZone(AgglomerationGUI.agg.getCity(city1.getText()));
 				}
 				else {
-					System.out.println("Veuillez saisir des noms de villes valides.");
+					System.out.println("Ville introuvable.Veuillez saisir un nom de ville valide.");
 				}
 			}
 			catch(ExeptionChangesArea e) {

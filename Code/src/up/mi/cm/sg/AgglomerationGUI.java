@@ -1,5 +1,7 @@
 package up.mi.cm.sg;
-
+/**
+ * Classe qui permet de lancer Javafx
+ */
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -20,6 +22,7 @@ public class AgglomerationGUI extends Application{
 		menu2 = new Scene(new SecondMenuPane(stage),300,300);
 		menuAuto = new Scene(new AutoResolutionPane(stage),300,300);
 		
+		stage.setTitle("Communaute d'agglomeration");
 		stage.setScene(menuStart);
 		stage.sizeToScene();
 		stage.show();

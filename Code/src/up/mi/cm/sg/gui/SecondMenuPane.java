@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import up.mi.cm.sg.AgglomerationGUI;
 
 public class SecondMenuPane extends FlowPane{
 	public SecondMenuPane(Stage stage) {
@@ -15,7 +16,6 @@ public class SecondMenuPane extends FlowPane{
 		Button add = new Button("Ajouter une zone");
 		Button remove = new Button("Supprimer une zone");
 		Button print = new Button("Afficher");
-		Button save = new Button("Save");
 		Button end = new Button("Fin");
 		AfficherGraphStream a  = new AfficherGraphStream();
 		
@@ -28,13 +28,7 @@ public class SecondMenuPane extends FlowPane{
 		});
 		
 		end.setOnAction(event->{
-			try {
-				a.start(stage);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				System.out.println("je vais m'enerver");
-				e.printStackTrace();
-			}
+			stage.setScene(AgglomerationGUI.menuStart);
 			//System.exit(1);
 		});
 		
@@ -42,9 +36,6 @@ public class SecondMenuPane extends FlowPane{
 			stage.setScene(new Scene(new AfficherPane(stage,2)));
 		});
 		
-		save.setOnAction(event->{
-			System.out.println("save");
-		});
-		this.getChildren().addAll(add,remove,print, save,end);
+		this.getChildren().addAll(add,remove,print,end);
 	}
 }
