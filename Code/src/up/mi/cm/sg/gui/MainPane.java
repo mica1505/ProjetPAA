@@ -14,7 +14,11 @@ import javafx.stage.Stage;
 import up.mi.cm.sg.AgglomerationGUI;
 import up.mi.cm.sg.ExeptionChangesArea;
 import up.mi.cm.sg.ParseAgglomeration;
-
+/**
+ * Classe qui represente le panneau qui contient le menu de depart
+ * @author 
+ *
+ */
 public class MainPane extends FlowPane{
 
 	public MainPane(Stage stage) {
@@ -32,6 +36,8 @@ public class MainPane extends FlowPane{
 		Button print = new Button("Afficher");
 		Button end = new Button("Fin");
 		
+		
+		//on selectionne un fichier dpeuis l'explorateur de fichiers
 		selectFile.setOnAction(event->{
 			File aggFile = explore.showOpenDialog(stage);
 			if(aggFile!=null) {
@@ -47,14 +53,15 @@ public class MainPane extends FlowPane{
 				System.out.println(AgglomerationGUI.aggPath);
 			}
 		});
-		
+		//on lance la resolution manuelle
 		man.setOnAction(event->{
 			if(AgglomerationGUI.agg!=null) {
-				//redirection vers combien de villes menu
+				//redirection vers le second menu
 				stage.setScene(new Scene(new SecondMenuPane(stage),300,300));
 			}
 		});
 		
+		//on lance la resolution automatique
 		auto.setOnAction(event->{
 			if(AgglomerationGUI.agg!=null) {
 				System.out.println("resolution gloutonne");
@@ -64,7 +71,7 @@ public class MainPane extends FlowPane{
 			}
 		});
 		
-		//pour le save on selectinne aussi un fichier
+		//Pour la sauvegarde on selectionne un fichier depuis l'explorateur de fichiers
 		save.setOnAction(event->{
 			if(AgglomerationGUI.agg!=null) {
 				System.out.println("save");
@@ -78,25 +85,23 @@ public class MainPane extends FlowPane{
 				}
 			}
 		});
-		
+		//on affiche l'agglomeration
 		print.setOnAction(event->{
 			if(AgglomerationGUI.agg!=null) {
-				//AgglomerationGUI.agg = ParseAgglomeration.parseAgg(AgglomerationGUI.aggPath);
 				stage.setScene(new Scene(new AfficherPane(stage,3)));
 			}
 		});
+		//on affiche le graphe avec graph stream
 		AfficherGraphStream graph  = new AfficherGraphStream();
+		
 		end.setOnAction(event->{
 			if (AgglomerationGUI.agg!=null) {
 				try {
 					graph.start(stage);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					System.out.println("je vais m'enerver");
 					e.printStackTrace();
 				}
 			}
-			//System.exit(1);
 		});
 		
 		
