@@ -32,7 +32,7 @@ public class ParseAgglomeration {
 					nbCities++;
 				} //on vérifie si il y a un mot qui ne correspond a rien et que la chaine n'est pas vide
 				else if(!line.startsWith("route") && !line.startsWith("recharge") && !empty) {
-					throw new ExeptionChangesArea("\nUn probleme dans l'ecture de notre ficher a la linge " + nbCities + "\n");
+					throw new ExeptionChangesArea("\nUn probleme dans la lecture de notre ficher a la linge " + data.size() + "\n");
 				}
 			}
 			//on lit les villes
