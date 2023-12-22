@@ -4,14 +4,14 @@ import javafx.application.Application;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import up.mi.cm.sg.gui.AutoResolutionPane;
-import up.mi.cm.sg.gui.FirstMenuPane;
 import up.mi.cm.sg.gui.MainPane;
 import up.mi.cm.sg.gui.SecondMenuPane;
 
 /**
- * Cette class et la pour proposer une interface graphique de notre projet 
- * **/
+ * Classe qui permet de lancer Javafx
+ * 
+ */
+
 public class AgglomerationGUI extends Application{
 	public static CA agg=null;
 	public static Scene menuStart = null;
@@ -21,10 +21,9 @@ public class AgglomerationGUI extends Application{
 	public static String aggPath = null;
 	public void start(Stage stage) {
 		menuStart = new Scene(new MainPane(stage),300,300);
-		menu1 = new Scene(new FirstMenuPane(stage),300,300);
 		menu2 = new Scene(new SecondMenuPane(stage),300,300);
-		menuAuto = new Scene(new AutoResolutionPane(stage),300,300);
 		
+		stage.setTitle("Communaute d'agglomeration");
 		stage.setScene(menuStart);
 		stage.sizeToScene();
 		stage.show();

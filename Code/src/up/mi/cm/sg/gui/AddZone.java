@@ -9,29 +9,36 @@ import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import up.mi.cm.sg.AgglomerationGUI;
 import up.mi.cm.sg.ExeptionChangesArea;
-
+/**
+ * Classe qui represente le paneau qui gere l'ajout d'une zone de recharge dans une ville
+ * @author 
+ *
+ */
 public class AddZone extends FlowPane{
 	public AddZone(Stage stage) {
 		this.setOrientation(Orientation.VERTICAL);
 		Button add = new Button("Ajouter");
-		//afficher le message d'erreur
-		Label msg = new Label("");
+		//saisie du nom de la ville
 		
 		TextField city1 = new TextField();
 		
 		add.setOnAction(event->{
+			//on essaye d'ajouter une zone de recharge a une ville ville, 
+			//si la ville possede deja une de zone
+			//une ExeptionChangesArea est levee
 			try {
+				//si la ville existe on lui ajoute une zone de recharge
 				if(AgglomerationGUI.agg.getCity(city1.getText())!=null) {
 					AgglomerationGUI.agg.addZone(AgglomerationGUI.agg.getCity(city1.getText()));
 				}
 				else {
-					System.out.println("Veuillez saisir des noms de villes valides.");
+					System.out.println("Ville introuvable. Veuillez saisir un nom de ville valide.");
 				}
 			}
 			catch(ExeptionChangesArea e) {
 				System.out.println(e.getMessage());
 			}
-			//on revient sur le menu de depart
+			//on affiche les villes contiennent des zones de recharge
 			stage.setScene(new Scene(new AfficheZonesPane(stage)));
 		});
 		

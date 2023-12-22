@@ -99,6 +99,7 @@ public class InterfaceAgglomeration {
 					chemin = IO.SaisieString(sc, "\nVeuillez saisir le chemin du fichier dans le quel vous voulez enregistrer votre agglomeration : ");
 				}while(chemin == "" || chemin == null);
 				ParseAgglomeration.writeCA(agg,chemin);
+				System.out.println("Solution sauvegardee!");
 			}
 			else if(choiceB == 4) {
 				quit = true;

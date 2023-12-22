@@ -145,7 +145,7 @@ public class CA{
 			throw new ExeptionChangesArea("\nLa ville est deja en possession d'une zone de recharge\n");
 		}else {
 			c.setZone(true);
-			System.out.println("La ville "+c.getName()+" est mainteneant en possession d'une zone de recharge.");
+			System.out.println("La ville de "+c.getName()+" est mainteneant en possession d'une zone de recharge.");
 		}
 	}
 	/***
@@ -191,7 +191,7 @@ public class CA{
 				throw new ExeptionChangesArea("On ne peut pas supprimer la zone de recharge, car la ville n'est pas reliee directement a une ville qui en possede une.");
 			}
 			else if(c.hasNeighbourZone()) {
-				System.out.println("La ville "+c.getName()+" ne contient plus de zone de recharge.");
+				System.out.println("La ville de "+c.getName()+" ne contient plus de zone de recharge.");
 				c.setZone(false);
 			}
 		}
