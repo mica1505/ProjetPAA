@@ -4,6 +4,7 @@ import java.util.ArrayList;
  * Represente une ville avec son nom, sa liste de villes voisines, sa zone de recharge
  * @author 
  * @version 1
+ * @implNote Comparable Pour pouvoir trier les villes
  */
 public class City implements Comparable<City>{
 	/***
@@ -137,6 +138,12 @@ public class City implements Comparable<City>{
 		return res;
 	}
 	@Override
+	/***
+	 * Compare deux ville parapode a leur nombre de ville voisine 
+	 * Une fonctions qui redéfini la méthode compareTo de l’interface Comparable pour permettre de trier les liste de City
+	 * @param Prend une autre ville 
+	 * @return sa envois 1 on a moin de voisint que lautre -1 si on en a plus 0 si il y en a autent
+	 * */
 	public int compareTo(City c) {
 		if (cities.size() < c.cities.size()){
 			return 1;

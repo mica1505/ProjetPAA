@@ -22,7 +22,8 @@ public class ParseAgglomeration {
 				data.add(line);
 				if(line.startsWith("ville")) {
 					nbCities++;
-				} else if(!line.startsWith("route") && !line.startsWith("recharge")) {
+				} //on vérifie si il y a un mots qui ne correspond a rien
+				else if(!line.startsWith("route") && !line.startsWith("recharge")) {
 					throw new ExeptionChangesArea("\nUn probleme dans la lecture de notre ficher a la linge " + nbCities + "\n");
 				}
 			}
@@ -64,9 +65,9 @@ public class ParseAgglomeration {
 		return agg;
 	}
 	/**
-	 * 
-	 * @param agg : 
-	 * @param File
+	 * fonction qui ecrit une agglomeration dans un fichier
+	 * @param agg on recouper la communauté d’agglomérations courent 
+	 * @param File Le chemin du ficher sur le quelle on vas écrire 
 	 */
 	public static void writeCA(CA agg, String File) {
 		FileOutputStream fos;
@@ -91,10 +92,10 @@ public class ParseAgglomeration {
 	
 	}
 	/**
-	 * 
-	 * @param agg
-	 * @param writer
-	 * @throws IOException
+	 * Ecrit tout les nom de ville dans le ficher avec le format ville(nom).
+	 * @param agg On recouper la communauté d’agglomérations courent 
+	 * @param writer On prend l’objet Writer avec le quelle on écrit dans le ficher .ca
+	 * @throws IOException On propage l’erreur a la fonctions writeCA qui vas la catch si n’essaierai 
 	 */
 	public static void writeCities(CA agg, Writer writer) throws IOException{
 		for(City c : agg.getCA()) {
@@ -102,12 +103,13 @@ public class ParseAgglomeration {
 		}
 	}
 	/**
-	 * 
-	 * @param agg
-	 * @param writer
-	 * @throws IOException
+	 * Ecrit toutes les route en vérifient que on ne la pas déjà avec une liste le format et route(nomA,nomB).
+	 * @param agg on recouper la communauté d’agglomérations courent 
+	 * @param writer On prend l’objet Writer avec le quelle on écrit dans le ficher .ca
+	 * @throws IOException On propage l’erreur a la fonctions writeCA qui vas la catch si n’essaierai 
 	 */
 	public static void writeNeighbours(CA agg, Writer writer) throws IOException{
+		//sauvegarde les route déjà considérer
 		ArrayList<String> voisinage = new  ArrayList<String>();
 		for(City c : agg.getCA()) {
 			for(City v : c.getCities()) {
@@ -120,10 +122,10 @@ public class ParseAgglomeration {
 		
 	}
 	/**
-	 * 
-	 * @param agg
-	 * @param writer
-	 * @throws IOException
+	 * Ecrit les villes qui ont un zone de recharge avec le format recharge(nom).
+	 * @param agg on recouper la communauté d’agglomérations courent 
+	 * @param writer On prend l’objet Writer avec le quelle on écrit dans le ficher .ca
+	 * @throws IOException On propage l’erreur a la fonctions writeCA qui vas la catch si n’essaierai 
 	 */
 	public static void writeZones(CA agg, Writer writer) throws IOException{
 		for(City c : agg.getCA()) {
@@ -151,7 +153,8 @@ public class ParseAgglomeration {
 				b = community.getCity(line.split("\\(")[1].split(",")[1].split("\\)")[0]);
 				//on rajoute b aux voisins de a
 				a.addNeighbour(b);
-			}else if(!line.startsWith("ville") && !line.startsWith("recharge")) {
+			}//on vérifie si il y a un mots qui ne correspond a rien
+			else if(!line.startsWith("ville") && !line.startsWith("recharge")) {
 				throw new ExeptionChangesArea("\nUn probleme dans lecriture de notre ficher a la linge " + i + "\n");
 			}
 		}
@@ -182,7 +185,8 @@ public class ParseAgglomeration {
 				a = community.getCity(line.split("\\(")[1].split("\\)")[0]);
 				//on lui ajoute une zone de recharge
 				a.setZone(true);
-			}else if(!line.startsWith("route") && !line.startsWith("ville")) {
+			}//on vérifie si il y a un mots qui ne correspond a rien
+			else if(!line.startsWith("route") && !line.startsWith("ville")) {
 				throw new ExeptionChangesArea("\nUn probleme dans lecriture de notre ficher a la linge " + i + "\n");
 			}
 			

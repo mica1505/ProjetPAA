@@ -1,12 +1,17 @@
 package up.mi.cm.sg;
 
 import javafx.application.Application;
+
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import up.mi.cm.sg.gui.AutoResolutionPane;
 import up.mi.cm.sg.gui.FirstMenuPane;
 import up.mi.cm.sg.gui.MainPane;
 import up.mi.cm.sg.gui.SecondMenuPane;
+
+/**
+ * Cette class et la pour proposer une interface graphique de notre projet 
+ * **/
 public class AgglomerationGUI extends Application{
 	public static CA agg=null;
 	public static Scene menuStart = null;

@@ -20,8 +20,9 @@ public class InterfaceAgglomeration {
 		initAgglomeration(args[0]);
 	}
 	/***
-	 * 
-	 * @return
+	 * Cree une agglomérations ou affiche une erreur et quitte le programme si le ficher nais pas correcte
+	 * @param path Le chemin du ficher qui contins l’agglomérations
+	 * @return Renvois l’agglomérations crée a partir du ficher indiquer
 	 */
 	public static CA readAgglomeration(String path) {
 		try {
@@ -33,7 +34,8 @@ public class InterfaceAgglomeration {
 		return null;
 	}
 	/**
-	 * 
+	 * Récupère l’agglomérations et lance le menus textuelle 
+	 * @param  Le chemin du ficher qui contins l’agglomérations
 	 */
 	public static void initAgglomeration(String path) {
 		Scanner sc = new Scanner(System.in);
@@ -49,9 +51,9 @@ public class InterfaceAgglomeration {
 		System.out.print(agg.allZones());
 	}
 	/***
-	 * 
-	 * @param sc
-	 * @param agg
+	 * Le menu d’interface textuelle pour ajouter des route
+	 * @param sc Le Scaner pour saisir une route
+	 * @param agg La communauté d’agglomérations a modifier
 	 */
 	public static void menu1(Scanner sc,CA agg) {
 		boolean quit = false;
@@ -70,9 +72,9 @@ public class InterfaceAgglomeration {
 		}
 	}
 	/**
-	 * 
-	 * @param sc
-	 * @param agg
+	 * Le menu pour choisir si on fais une résolutions manuelle ou automatique
+	 * @param sc Le Scaner pour saisir le type de resolutions
+	 * @param agg La communauté d’agglomérations a modifier
 	 */
 	public static void menuHumanOrComputer(Scanner sc, CA agg) {
 		boolean quit = false;
@@ -89,7 +91,7 @@ public class InterfaceAgglomeration {
 				menuHuman(sc, agg);
 			}
 			else if(choiceB==2) {
-				menuComputer(sc, agg);
+				menuComputer(agg);
 			}
 			else if(choiceB == 3){
 				String chemin;
@@ -104,9 +106,9 @@ public class InterfaceAgglomeration {
 		}
 	}
 	/**
-	 * 
-	 * @param sc
-	 * @param agg
+	 * Le menus pour ajouter ou supprimer une borne de recharge
+	 * @param sc Le Scaner pour saisir l'ajout ou la supretions de borne
+	 * @param agg La communauté d’agglomérations a modifier
 	 */
 	public static void menuHuman(Scanner sc, CA agg) {
 		boolean quit = false;
@@ -130,11 +132,10 @@ public class InterfaceAgglomeration {
 		}
 	}
 	/**
-	 * 
-	 * @param sc
-	 * @param agg
+	 * Résous le problème avec un algorithme gloutons 
+	 * @param agg La communauté d’agglomérations a modifier
 	 */
-	public static void menuComputer(Scanner sc, CA agg) {
+	public static void menuComputer(CA agg) {
 		agg.algorithmeGlouton();
 		System.out.println(agg.allZones());
 	}

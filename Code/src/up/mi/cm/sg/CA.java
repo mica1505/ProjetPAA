@@ -10,20 +10,20 @@ import java.util.Random;
  * @version 1
  */
 public class CA{
-/***
- * Initialisation des attributs de la classe 
- * @agglomeration : liste des villes qui constituent l'agglomeration
- * @nbCities : nombre de villes dans l'agglomeration
- */
+	/***
+	 * Initialisation des attributs de la classe 
+	 * @agglomeration : liste des villes qui constituent l'agglomeration
+	 * @nbCities : nombre de villes dans l'agglomeration
+	 */
 	private List<City> agglomeration;
 	private int nbCities;
-/***
- * Construit une agglomeration avec : 
- * 		- Une ArrayList de type City qui contient le nom des villes
- * 		- Nombre de villes a nbCities
- * 
- * @param nbCities : le nombre de villes de l'agglomeration
- */
+	/***
+	 * Construit une agglomeration avec : 
+	 * 		- Une ArrayList de type City qui contient le nom des villes
+	 * 		- Nombre de villes a nbCities
+	 * 
+	 * @param nbCities : le nombre de villes de l'agglomeration
+	 */
 	public CA(int nbCities) {
 		this.agglomeration = new ArrayList<City>();
 		setNbCities(nbCities);
@@ -32,13 +32,13 @@ public class CA{
 	public CA() {
 		this.agglomeration = new ArrayList<City>();
 	}
-/***
- * Initialise le nom des villes de l'agglomeration :
- * 		- Si nbCities<=26 le nom des villes c'est une lettre de l'alphabet
- * 		- Sinon elles seront numerotes de 1 jusqu'a nbCities
- * 
- * @param nbCities : le nombre de villes de l'agglomeration
- */
+	/***
+	 * Initialise le nom des villes de l'agglomeration :
+	 * 		- Si nbCities<=26 le nom des villes c'est une lettre de l'alphabet
+	 * 		- Sinon elles seront numerotes de 1 jusqu'a nbCities
+	 * 
+	 * @param nbCities : le nombre de villes de l'agglomeration
+	 */
 	private void initCity() {
 		int letter = 65;
 		for(int i= 0; i<this.nbCities ; i++) {
@@ -49,11 +49,11 @@ public class CA{
 			}
 		}
 	}
-/***
- *Permet de modifier le nombre de villes de l'agglomeration
- *
- * @param nbCities
- */
+	/***
+	 *Permet de modifier le nombre de villes de l'agglomeration
+	 *
+	 * @param nbCities
+	 */
 	public void setNbCities(int nbCities) {
 		if(nbCities<2) {
 			throw new IllegalArgumentException("Le nombre de villes doit etre >= 2");
@@ -61,11 +61,11 @@ public class CA{
 			this.nbCities = nbCities;
 		}
 	}
-/***
- * Permet d'acceder a une ville de l'agglomeration en partant de son nom 
- * @param name : nom de la ville
- * @return name : la ville recherchee
- */
+	/***
+	 * Permet d'acceder a une ville de l'agglomeration en partant de son nom 
+	 * @param name : nom de la ville
+	 * @return name : la ville recherchee
+	 */
 	public City getCity(String name){
 		City res = null;
 		for(City c : this.agglomeration) {
@@ -81,10 +81,10 @@ public class CA{
 	public List<City> getCA(){
 		return agglomeration;
 	}
-/***
- * Fonction pour initialiser une route entre 2 villes saisies au clavier
- * @param sc : Scanner pour effectuer une lecture clavier
- */
+	/***
+	 * Fonction pour initialiser une route entre 2 villes saisies au clavier
+	 * @param sc : Scanner pour effectuer une lecture clavier
+	 */
 	public void initRoads(Scanner sc) {
 		City c1,c2;
 		String cr1,cr2;
@@ -111,10 +111,10 @@ public class CA{
 		c1.addNeighbour(c2);
 		
 	}
-/***
- * Fonction qui demande a l'utilisateur de saisir une ville dans laquelle il veut ajouter une borne de recharge :
- * @param sc : Scanner pour effectuer une lecture clavier
- */
+	/***
+	 * Fonction qui demande a l'utilisateur de saisir une ville dans laquelle il veut ajouter une borne de recharge :
+	 * @param sc : Scanner pour effectuer une lecture clavier
+	 */
 	public void addZoneUser(Scanner sc) {
 		City c;
 		String cName;
@@ -136,10 +136,10 @@ public class CA{
 		System.out.println(allZones());
 	}
 	
-/***
- * Si la ville ne possede pas de zone de recharge, on en rajoute une. Sinon on ne fait rien
- * @param c : prend la vile a modifier
- */
+	/***
+	 * Si la ville ne possede pas de zone de recharge, on en rajoute une. Sinon on ne fait rien
+	 * @param c : prend la vile a modifier
+	 */
 	public void addZone(City c) throws ExeptionChangesArea{
 		if(c.getZone()) {
 			throw new ExeptionChangesArea("\nLa ville est deja en possession d'une zone de recharge\n");
@@ -148,10 +148,10 @@ public class CA{
 			System.out.println("La ville "+c.getName()+" est mainteneant en possession d'une zone de recharge.");
 		}
 	}
-/***
- * Fonction qui demande a l'utilisateur de saisir le nom de la ville d'ou il veut supprimer une zone de recharge.
- * @param sc : Scanner pour effectuer une lecture clavier 
- */
+	/***
+	 * Fonction qui demande a l'utilisateur de saisir le nom de la ville d'ou il veut supprimer une zone de recharge.
+	 * @param sc : Scanner pour effectuer une lecture clavier 
+	 */
  	public void removeZoneUser(Scanner sc) {
  		City c;
 		String cName;
@@ -173,13 +173,13 @@ public class CA{
 		}
 		System.out.println(allZones());
  	}
-/***
- * La zone est supprimee si et seulement si : 
- * 		- Les villes qui sont reliees a cette ville sont en relation direct avec une autre ville possedant une zone de recharge
- * 		- La ville en question est en relation direct avec une autre ville qui possede une zone de recharge
- * 		- Si la ville possede une zone de recharge
- * @param c : prent la ville a modifier
- */
+	/***
+	 * La zone est supprimee si et seulement si : 
+	 * 		- Les villes qui sont reliees a cette ville sont en relation direct avec une autre ville possedant une zone de recharge
+	 * 		- La ville en question est en relation direct avec une autre ville qui possede une zone de recharge
+	 * 		- Si la ville possede une zone de recharge
+	 * @param c : prent la ville a modifier
+	 */
 	public void removeZone(City c) throws ExeptionChangesArea{
 		if(!c.getZone()) {
 			throw new ExeptionChangesArea("\nLa ville ne possede pas de zone de recharge.\n");
@@ -196,9 +196,10 @@ public class CA{
 			}
 		}
 	}
-/***
- * Fonction qui affiche les villes qui possedent une zone de recharge
- */
+	/***
+	 * Fonction qui affiche les villes qui possedent une zone de recharge
+	 * @return on retoure la une chaine caratere qui affiche les ville avec une zone de recharge
+	 */
 	public String allZones() {
 		StringBuilder sb = new StringBuilder("\nLes villes qui possedent des zones de recharge sont : \n");
 		for(int i=0;i<nbCities;i++) {
@@ -208,9 +209,10 @@ public class CA{
 		}
 		return sb.toString();
 	}
-/***
-* 	Fonction qui affiche les villes de l'agglomeration
-*/
+	@Override
+	/***
+	* 	Fonction qui affiche les villes de l'agglomeration
+	*/
 	public String toString() {
 		StringBuilder sb = new StringBuilder("");
 		for(int i=0;i<nbCities;i++) {
@@ -218,6 +220,10 @@ public class CA{
 		}
 		return sb.toString();
 	}
+	/**
+	 * On affiche toute les ville de l'agglomeration
+	 * @return String
+	 * */
 	public String allCities() {
 		StringBuilder sb = new StringBuilder("L'agglomeration est composee des villes suivantes : \n");
 		for(int i=0;i<nbCities;i++) {
@@ -226,10 +232,10 @@ public class CA{
 		return sb.toString();
 	}
 	
-/***
- * Fonction qui renvois une ville choisie aleatoirement
- * @return City : une ville de l'agglomeration
- */
+	/***
+	 * Fonction qui renvois une ville choisie aleatoirement
+	 * @return City : une ville de l'agglomeration
+	 */
 	public City choise() {
 		Random random = new Random();
 		int i = random.nextInt(agglomeration.size());
@@ -255,8 +261,8 @@ public class CA{
 		}
 	}
 	/**
-	 * 
-	 * @return
+	 * Calcule le nombre de zonne de recharge de la CA
+	 * @return nbBorne le nombre de Zone de recharge
 	 */
 	public int score() {
 		int nbBorne = 0;
@@ -268,8 +274,9 @@ public class CA{
 		return nbBorne;
 	}
 	/**
-	 * 
-	 * @param iterations
+	 * Fonction naive qui permet de diminuer le nombre de borne dans une CA
+	 * Mais elle et un peu mieux que l’autre carre si on obtins un meilleur score on relance k itération 
+	 * @param iterations nombre des k iterations de la boucle
 	 */
 	public void naiveSolutions2(int iterations) {
 		int i = 0; 
@@ -292,7 +299,9 @@ public class CA{
 		}
 	}
 	/**
-	 * 
+	 * On trie toutes les villes dans l’ordre décroissant de leur nombre de voisin 
+	 * Ensuite on passe chaque ville avec une zone a false
+	 * Et pour finir on parcoure tous la liste et a chaque que fois que la ville ne possède pas de voisin on luis rajoute une zone
 	 */
 	public void algorithmeGlouton() {
 		Collections.sort(agglomeration);
