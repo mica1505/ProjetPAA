@@ -7,7 +7,6 @@ import java.util.Random;
 /***
  * Represente une agglomeration avec sa liste de villes et le nombre de villes qu'elle contient
  * @author 
- * @version 1
  */
 public class CA{
 	/***
@@ -75,9 +74,17 @@ public class CA{
 		}
 		return res;
 	}
+	/**
+	 * Foncion qui ajoute une ville a l'agglomeration
+	 * @param newCity
+	 */
 	public void addCity(City newCity) {
 		agglomeration.add(newCity);
 	}
+	/**
+	 * Fonction qui permet d'acceder aux villes de l'agglomeration
+	 * @return liste des villes de l'agglomeration
+	 */
 	public List<City> getCA(){
 		return agglomeration;
 	}

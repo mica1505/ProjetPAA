@@ -3,7 +3,6 @@ import java.util.ArrayList;
 /***
  * Represente une ville avec son nom, sa liste de villes voisines, sa zone de recharge
  * @author 
- * @version 1
  * @implNote Comparable Pour pouvoir trier les villes
  */
 public class City implements Comparable<City>{

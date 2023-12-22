@@ -3,10 +3,14 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ArrayList;
-
+/**
+ * Classe qui permet de lire une agglomeration depuis un fichier et en sauvegarde rune dasn un fichier
+ * @author 
+ *
+ */
 public class ParseAgglomeration {
 	/**
-	 * fonction qui llit une agglomeration depuis un fichier
+	 * fonction qui lit une agglomeration depuis un fichier
 	 * @param File le fichier ou se trouve notre agglomeration
 	 * @return CA l'agglomeration lue depuis le fichier
 	 */
@@ -22,14 +26,13 @@ public class ParseAgglomeration {
 				data.add(line);
 				if(line.startsWith("ville")) {
 					nbCities++;
-				} //on vérifie si il y a un mots qui ne correspond a rien
+				} //on vérifie si il y a un mot qui ne correspond a rien
 				else if(!line.startsWith("route") && !line.startsWith("recharge")) {
 					throw new ExeptionChangesArea("\nUn probleme dans la lecture de notre ficher a la linge " + nbCities + "\n");
 				}
 			}
 			//on lit les villes
 			CA agg = readCities(data,nbCities);
-			//System.out.println(agg);
 			//on lit les voisins
 			readNeighbours(data,nbCities,agg);
 			//on lit les zones des villes
@@ -74,18 +77,18 @@ public class ParseAgglomeration {
 		try {
 			fos = new FileOutputStream(File);
 			Writer out = new OutputStreamWriter(fos, "UTF8");
+			//on ecrit les villes
 			writeCities(agg, out);
+			//on ecrit les voisins de chaque ville
 			writeNeighbours(agg, out);
+			//on ecrit les zones de recharge des villes qui en possede une
 			writeZones(agg, out);
 			out.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -173,11 +176,11 @@ public class ParseAgglomeration {
 		String line = null;
 		boolean valide = true;
 		City a,b;
-
+		//on met otutes les zones a faux
 		for(City c : community.getCA()) {
 			c.setZone(false);
 		}
-
+		//on verifie si le fichier contient des zones
 		for(int i=nbCities;i<data.size();i++) {
 			line=data.get(i); 
 			if(line.startsWith("recharge")) {
@@ -185,16 +188,18 @@ public class ParseAgglomeration {
 				a = community.getCity(line.split("\\(")[1].split("\\)")[0]);
 				//on lui ajoute une zone de recharge
 				a.setZone(true);
-			}//on vérifie si il y a un mots qui ne correspond a rien
+			}//on vérifie si il y a un mot qui ne correspond a rien
 			else if(!line.startsWith("route") && !line.startsWith("ville")) {
 				throw new ExeptionChangesArea("\nUn probleme dans lecriture de notre ficher a la linge " + i + "\n");
 			}
 			
 		}
+		//on verifie que chaque ville respecte bien la contrainte d'accessibilite
 		for(City c : community.getCA()) {
 			valide &= c.hasNeighbourZone() || c.getZone();
 			
 		}
+		//si une des villes ne respecte pas la contrainte d'accessibilite on met a chaque ville une zone de recharge
 		if(!valide) {
 			for(City c : community.getCA()) {
 				c.setZone(true);

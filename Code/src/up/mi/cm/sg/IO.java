@@ -1,6 +1,10 @@
 package up.mi.cm.sg;
 import java.util.Scanner;
-
+/**
+ * Classe pour lire un lfux de donnees depuis la ligne de commandes
+ * @author 
+ *
+ */
 public class IO {
 	/**
 	 * On demande un entier et on vérifie s’il a correctement été entre sinon on le re demande

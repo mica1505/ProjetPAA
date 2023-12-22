@@ -4,7 +4,6 @@ import java.util.Scanner;
 /***
  * Represente le menu de demarrage et initialisation de l'agglomeration
  * @author 
- * @version 1
  *
  */
 public class InterfaceAgglomeration {
